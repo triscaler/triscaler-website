@@ -76,6 +76,19 @@
       .cards{grid-template-columns:repeat(2,1fr)}
       .grid-2{grid-template-columns:1fr}
     }
+    @media (max-width:768px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width:560px){
       .cards{grid-template-columns:1fr}
     }
@@ -227,7 +240,7 @@
         <h3>Contact</h3>
       </div>
 
-      <div style="margin-top:18px;display:grid;grid-template-columns:1fr 380px;gap:18px">
+      <div class="contact-grid" style="margin-top:18px;display:grid;grid-template-columns:1fr 380px;gap:18px">
         <div>
           <div class="contact-box">
             <h4>Get in touch</h4>
