@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Triscaler — Cloud Security</title>
+  <meta name="description" content="Triscaler — agentless cloud breach containment. Ingest CloudTrail & CloudWatch, detect threats, and safely contain compromised resources." />
+  <meta name="theme-color" content="#0b75ff" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b75ff'/><path d='M50 18 L65 40 L50 34 L35 40 Z' fill='white'/></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    :root{
+      --blue:#0b75ff;
+      --blue-700:#0a63d6;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --card:#f8fafc;
+      --max-w:1100px;
+      --radius:12px;
+      --accent:#0b75ff;
+      --text:#0f1724;
+      --glass: rgba(255,255,255,0.6);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;color:var(--text);background:linear-gradient(180deg,#ffffff 0%, #f7f9fb 100%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}
+    a{color:inherit}
+    .container{max-width:var(--max-w);margin:0 auto;padding:28px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0;position:sticky;top:0;background-color:var(--bg);z-index:1}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo-wrap{width:60px;height:60px;display:flex;align-items:center;justify-content:center}
+    .wordmark{font-weight:700;font-size:20px;color:var(--text);letter-spacing:.2px}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+    .cta{background:var(--blue);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 440px;gap:36px;align-items:center;padding:36px 0}
+    .hero h1{font-size:34px;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .demo-btn{background:var(--blue);color:#fff;padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .secondary{background:transparent;border:1px solid #e6eefc;padding:10px 14px;border-radius:10px;color:var(--blue);font-weight:700;cursor:pointer}
+
+    /* Card list */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(12,34,60,0.06);border:1px solid #f1f5f9}
+    .card h4{margin:0 0 8px;font-size:15px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Illustration / phone panel */
+    .panel{background:linear-gradient(180deg,#f7fbff,#ffffff);border-radius:14px;padding:20px;border:1px solid #e6f0ff;box-shadow:0 6px 24px rgba(11,117,255,0.06)}
+    .panel pre{white-space:pre-wrap;font-size:13px;color:var(--muted);margin:0}
+
+    /* Sections */
+    section{padding:40px 0;border-top:1px solid #f1f5f9}
+    .section-title{display:flex;align-items:baseline;gap:14px}
+    .section-title h3{margin:0;font-size:20px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+    .how-list{list-style:none;padding:0;margin:0}
+    .how-list li{padding:12px 0;border-bottom:1px dashed #eef2f7;color:var(--muted)}
+
+    /* Footer / contact */
+    footer{padding:28px 0;color:var(--muted)}
+    .contact-box{background:#fff;padding:18px;border-radius:12px;border:1px solid #eef4ff}
+    .socials{display:flex;gap:12px;align-items:center}
+    .socials a { margin-right: 15px; font-size: 20px; }
+
+    /* Responsive */
+    @media (max-width:960px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .cards{grid-template-columns:1fr}
+    }
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .kbd{background:#f1f5f9;padding:6px 10px;border-radius:8px;font-weight:700;color:var(--blue)}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo-wrap" aria-hidden="true">
+          <!-- Inline SVG eagle-shield (symbol-only) -->
+          <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle">
+            <title id="logoTitle">Triscaler logo</title>
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#0b75ff"/>
+                <stop offset="1" stop-color="#0a63d6"/>
+              </linearGradient>
+            </defs>
+            <!-- shield -->
+            <path d="M50 8 L82 22 V52 C82 72 65 88 50 96 C35 88 18 72 18 52 V22 Z" fill="url(#g1)"/>
+            <!-- eagle head -->
+            <path d="M34 44 C40 38 52 36 60 40 C57 36 52 34 48 34 C42 34 36 36 34 44 Z" fill="#fff"/>
+            <path d="M40 52 C48 46 58 46 66 50 C64 48 58 46 52 48 C46 50 42 52 40 52 Z" fill="#fff"/>
+            <path d="M60 56 L70 54 L66 60 Z" fill="#fff"/>
+          </svg>
+        </div>
+        <div>
+          <div class="wordmark">Triscaler</div>
+          <div style="font-size:12px;color:var(--muted)">Automated Cloud Breach Containment</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#solutions">Solutions</a>
+        <a href="#how">How it works</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="#contact">Book a demo</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main class="hero" role="main">
+      <div>
+        <h1>Secure. Detect. Contain.</h1>
+        <p class="muted">Agentless cloud breach containment for modern multi-cloud environments. Ingest CloudTrail, CloudWatch & VPC Flow logs — and safely isolate compromised resources with auditable playbooks.</p>
+
+        <!-- <div class="cta-row" style="margin-top:18px">
+          <a class="demo-btn" href="#contact">Request Demo</a>
+          <button class="secondary" onclick="scrollToContact()">Contact Sales</button>
+        </div> -->
+
+        <div class="cards" style="margin-top:24px">
+          <div class="card">
+            <h4>Agentless</h4>
+            <p>Fast onboarding via least-privilege role — no agents required.</p>
+          </div>
+          <div class="card">
+            <h4>Safe Containment</h4>
+            <p>Human-in-loop and rollback-first playbooks to prevent downtime.</p>
+          </div>
+          <div class="card">
+            <h4>Audit & Compliance</h4>
+            <p>Immutable logs and evidence for forensics and regulators.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" aria-hidden="true">
+        <pre><strong>Sample – containment playbook (YAML)</strong>
+
+- name: CompromisedIAMKey
+  detect: cloudtrail.event_name == "CreateAccessKey"
+  risk: high
+  actions:
+    - type: suspend_access_key
+      approval: required
+    - type: notify_owner
+      channel: slack
+    - type: preserve_logs
+  audit: true
+        </pre>
+      </div>
+    </main>
+
+    <!-- Solutions -->
+    <section id="solutions">
+      <div class="section-title">
+        <h3>Solutions</h3>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px">
+        <div>
+          <h4>Cloud Breach Containment</h4>
+          <p class="muted">Precision playbooks that isolate compromised resources — IAM keys, compute workloads, or functions — while preserving business continuity and evidence.</p>
+
+          <h4 style="margin-top:18px">Cloud Security Posture</h4>
+          <p class="muted">Continuous monitoring for risky configurations and privilege drift with actionable remediation suggestions.</p>
+
+          <h4 style="margin-top:18px">Forensics & Compliance</h4>
+          <p class="muted">Audit-ready trails, export to SIEM, and exportable incident reports for compliance teams.</p>
+        </div>
+
+        <div>
+          <h4>Key Integrations</h4>
+          <ul class="muted">
+            <li>AWS CloudTrail, CloudWatch, VPC Flow Logs</li>
+            <li>Slack, MS Teams, SIEM</li>
+            <li>Terraform & CI pipelines for infra guardrails</li>
+          </ul>
+
+          <h4 style="margin-top:18px">Deployment Models</h4>
+          <p class="muted">SaaS (fast), Private SaaS (dedicated instances), or On-prem for regulated customers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how">
+      <div class="section-title">
+        <h3>How it works</h3>
+      </div>
+
+      <div style="margin-top:18px" class="grid-2">
+        <div>
+          <ol class="how-list">
+            <li><strong>Ingest:</strong> Collect CloudTrail & CloudWatch events into a secure S3 bucket for processing.</li>
+            <li><strong>Detect:</strong> Rule-based and anomaly scoring to prioritize incidents.</li>
+            <li><strong>Decide:</strong> Playbook engine maps detection to staged containment steps and approvals.</li>
+            <li><strong>Contain:</strong> Execute safe actions — suspend keys, quarantine instances, throttle functions.</li>
+            <li><strong>Audit:</strong> Preserve logs & produce a tamper-evident report for forensics.</li>
+          </ol>
+        </div>
+        <div>
+          <h4>Designed for minimal risk</h4>
+          <p class="muted">Containment actions are staged: monitor → soft-quarantine → hard-quarantine. Human approvals, rollbacks, and clear owner notifications reduce the risk of accidental downtime.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title">
+        <h3>Contact</h3>
+      </div>
+
+      <div style="margin-top:18px;display:grid;grid-template-columns:1fr 380px;gap:18px">
+        <div>
+          <div class="contact-box">
+            <h4>Get in touch</h4>
+            <p class="muted">Reach out for product demos, enterprise pricing, or partner inquiries.</p>
+
+            <p style="margin-top:12px"><strong>Email:</strong> <a href="mailto:hello@triscaler.com">hello@triscaler.com</a><br>
+            <strong>Phone:</strong> <a href="tel:+919319741275">+91-9319741275</a></p>
+
+            <p style="margin-top:12px">
+              <strong>Follow</strong><br>
+              <span class="social-icons">
+            <a href="https://www.linkedin.com/company/triscaler" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/triscaler" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/triscaler_sec/" target="_blank"><i class="fab fa-instagram"></i></a>
+              </span>
+            </p>
+          </div>
+
+          <div style="margin-top:18px;padding:18px;background:#fff;border-radius:12px;border:1px solid #eef4ff">
+            <h4 style="margin:0 0 8px">Quick demo request</h4>
+            <!-- <p style="margin:0 0 12px" class="muted">Send a demo request — we’ll respond within one business day.</p> -->
+            <p style="margin:0 0 12px" class="muted">Send a demo request — we’ll respond.</p>
+
+            <!-- simple form: try to use mailto fallback -->
+            <!-- <form id="demoForm" onsubmit="handleDemo(event)">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <input name="org" placeholder="Organization (optional)" style="padding:10px;border-radius:8px;border:1px solid #eef2f7" />
+                <input required name="email" placeholder="Your email" type="email" style="padding:10px;border-radius:8px;border:1px solid #eef2f7" />
+                <textarea name="message" placeholder="Short message (optional)" rows="4" style="padding:10px;border-radius:8px;border:1px solid #eef2f7"></textarea>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <button class="demo-btn" type="submit">Request Demo</button>
+                  <button type="button" class="secondary" onclick="fillExample()">Use example</button>
+                </div>
+              </div>
+            </form> -->
+
+          </div>
+        </div>
+
+        <div>
+          <div style="background:linear-gradient(180deg,#f7fbff,#ffffff);padding:18px;border-radius:12px;border:1px solid #eef4ff">
+            <h4 style="margin-top:0">Why Triscaler</h4>
+            <ul style="margin:12px 0;color:var(--muted)">
+              <li>Reduce mean time to contain (MTC) with auditable automation</li>
+              <li>Least-privilege integrations and safe rollback options</li>
+              <li>Lightweight deployment — SaaS-first with private/offline options</li>
+            </ul>
+            <p style="color:var(--muted);margin-top:12px;font-size:13px">We do not include personal names on the site. Contact details above are for product & partnership inquiries.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top:30px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:42px;height:42px;display:flex;align-items:center;justify-content:center">
+            <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#0b75ff"/>
+                  <stop offset="1" stop-color="#0a63d6"/>
+                </linearGradient>
+              </defs>
+              <!-- shield -->
+              <path d="M50 8 L82 22 V52 C82 72 65 88 50 96 C35 88 18 72 18 52 V22 Z" fill="url(#g1)"/>
+              <!-- eagle head -->
+              <path d="M34 44 C40 38 52 36 60 40 C57 36 52 34 48 34 C42 34 36 36 34 44 Z" fill="#fff"/>
+              <path d="M40 52 C48 46 58 46 66 50 C64 48 58 46 52 48 C46 50 42 52 40 52 Z" fill="#fff"/>
+              <path d="M60 56 L70 54 L66 60 Z" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-weight:700">Triscaler</div>
+            <div style="font-size:13px;color:var(--muted)">Automated cloud breach containment</div>
+          </div>
+        </div>
+
+        <div style="color:var(--muted);font-size:13px">© <span id="yr"></span> Triscaler. All rights reserved.</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    function scrollToContact(){
+      document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+    }
+
+    function fillExample(){
+      document.querySelector('input[name="email"]').value = 'info@yourcompany.com';
+      document.querySelector('textarea[name="message"]').value = 'Hi, we would like a demo of Triscaler. Please share available slots.';
+    }
+
+    function handleDemo(e){
+      e.preventDefault();
+      var form = document.getElementById('demoForm');
+      var formData = new FormData(form);
+      var email = formData.get('email') || '';
+      var org = formData.get('org') || '';
+      var message = formData.get('message') || '';
+      var subject = encodeURIComponent('Triscaler Demo Request from ' + (org || email));
+      var body = encodeURIComponent('Organization: ' + org + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+      // try to open mail client via mailto:
+      var mailto = 'mailto:hello@triscaler.com?subject=' + subject + '&body=' + body;
+      window.location.href = mailto;
+      // fallback: show a confirmation
+      setTimeout(function(){
+        alert('Your mail client should open. If not, please send an email to hello@triscaler.com');
+      }, 300);
+    }
+  </script>
+</body>
+</html>
