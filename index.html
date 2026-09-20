@@ -53,7 +53,14 @@
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    /* Smooth scrolling only once the reader has interacted with the page.
+       On `html` alone it also animates the jump to a #fragment on load, so
+       reloading a URL like /#contact made the site appear to scroll itself
+       somewhere on every refresh. `:focus-within` is only true after an
+       interaction, so in-page nav still glides and a reload lands instantly. */
+    @media (prefers-reduced-motion:no-preference){
+      html:focus-within{scroll-behavior:smooth}
+    }
     body{margin:0;color:var(--ink);background:var(--bg);line-height:1.6;
          -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     a{color:inherit}
@@ -136,7 +143,10 @@
     .panel-foot{font-size:11px;color:var(--faint);margin-top:14px;text-align:right}
 
     /* Sections ---------------------------------------------------------- */
-    section{padding:72px 0;border-top:1px solid var(--line)}
+    section{padding:72px 0;border-top:1px solid var(--line);
+            /* Clear the sticky header, or a jump to #contact lands with the
+               heading hidden behind it. */
+            scroll-margin-top:84px}
     /* Alternating surfaces give the page rhythm; without them it reads as
        one long column of white. The sections sit inside .container, so a
        plain background would stop at the content width and look like a
@@ -210,16 +220,14 @@
       .stat-row{gap:16px}
       .container{padding:0 20px}
     }
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-    }
+
   </style>
 </head>
 <body>
 
   <div class="container">
     <header>
-      <div class="brand">
+      <a class="brand" href="./" aria-label="Triscaler home" style="text-decoration:none">
         <div class="logo-wrap" aria-hidden="false">
           <img src="logo.png" alt="Triscaler" width="52" height="52">
         </div>
@@ -227,7 +235,7 @@
           <div class="wordmark">Triscaler <span>Discovery</span></div>
           <div class="brand-sub">Know where your sensitive data lives</div>
         </div>
-      </div>
+      </a>
 
       <nav>
         <a href="#solutions">Solutions</a>
