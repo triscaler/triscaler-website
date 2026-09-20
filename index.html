@@ -3,28 +3,38 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Triscaler Discovery — Find your sensitive data before someone else does</title>
-  <meta name="description" content="Triscaler Discovery finds sensitive data across your endpoints — credentials, PII and payment data — at rest, in motion and in use. Know what you hold, where it lives, and who is responsible." />
+  <title>Triscaler Discovery | Find your sensitive data before someone else does</title>
+  <meta name="description" content="Triscaler Discovery finds sensitive data across your endpoints: credentials, PII and payment data, at rest, in motion and in use. Know what you hold, where it lives, and who is responsible." />
   <link rel="canonical" href="https://triscaler.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://triscaler.com/" />
   <meta property="og:title" content="Triscaler Discovery" />
-  <meta property="og:description" content="Find sensitive data across your endpoints — credentials, PII and payment data — at rest, in motion and in use." />
+  <meta property="og:description" content="Find sensitive data across your endpoints: credentials, PII and payment data, at rest, in motion and in use." />
   <meta property="og:image" content="https://triscaler.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0b75ff" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b75ff'/><path d='M50 18 L65 40 L50 34 L35 40 Z' fill='white'/></svg>">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="favicon-180.png">
+  <link rel="apple-touch-icon" href="favicon-180.png">
 
   <style>
     /* One stylesheet, no framework, no webfont. The whole page is a single
-       file that renders on first paint — which is the honest version of
+       file that renders on first paint, which is the honest version of
        "lightweight" for a product that sells carefulness. */
     :root{
       --blue:#0b75ff;
       --blue-600:#0a63d6;
       --blue-ink:#084da8;
       --blue-wash:#eef5ff;
+      /* A second hue so the page is not one blue repeated. Violet sits
+         beside the brand blue without competing with the status colours,
+         which stay reserved for severity and must never read as decoration. */
+      --violet:#6d5efc;
+      --violet-wash:#f1efff;
+      --cyan:#0aa5c9;
+      --grad:linear-gradient(120deg,#0b75ff 0%,#6d5efc 55%,#8b5cf6 100%);
+      --grad-soft:linear-gradient(135deg,#eef5ff 0%,#f1efff 60%,#fdf2ff 100%);
       --ink:#0d1526;
       --muted:#5b6678;
       --faint:#8892a4;
@@ -56,31 +66,42 @@
            background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(12px);
            border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:10px}
-    .logo-wrap{width:36px;height:36px;display:flex;align-items:center;justify-content:center}
-    .logo-wrap img{width:36px;height:36px;object-fit:contain;display:block}
-    .wordmark{font-weight:700;font-size:17px;letter-spacing:-.01em}
+    .logo-wrap{width:52px;height:52px;display:flex;align-items:center;justify-content:center}
+    .logo-wrap img{width:52px;height:52px;object-fit:contain;display:block}
+    .wordmark{font-weight:700;font-size:19px;letter-spacing:-.015em}
     .wordmark span{color:var(--faint);font-weight:500}
     .brand-sub{font-size:11.5px;color:var(--faint);line-height:1.2;margin-top:1px}
     nav{display:flex;gap:26px;align-items:center}
     nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:14px}
     nav a:hover{color:var(--ink)}
-    .cta{background:var(--blue);color:#fff!important;padding:9px 16px;border-radius:9px;
-         text-decoration:none;font-weight:600;font-size:14px;box-shadow:var(--shadow-sm)}
-    .cta:hover{background:var(--blue-600)}
+    .cta{background:var(--grad);color:#fff!important;padding:9px 16px;border-radius:9px;
+         text-decoration:none;font-weight:600;font-size:14px;
+         box-shadow:0 2px 10px rgba(11,117,255,.28)}
+    .cta:hover{filter:brightness(1.07)}
 
     /* Hero -------------------------------------------------------------- */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center;
-          padding:72px 0 64px;position:relative}
+          padding:76px 0 68px;position:relative}
+    /* A wash that bleeds past the container, so the fold has colour without
+       tinting the text sitting on it. */
+    .hero::before{content:"";position:absolute;left:50%;transform:translateX(-50%);
+                  top:-120px;width:100vw;height:calc(100% + 120px);
+                  background:var(--grad-soft);z-index:-1;
+                  -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);
+                  mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
     .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.09em;
              text-transform:uppercase;color:var(--blue-ink);background:var(--blue-wash);
              padding:5px 11px;border-radius:999px;margin-bottom:18px}
-    .hero h1{font-size:clamp(34px,4.6vw,52px);margin:0 0 16px;letter-spacing:-.03em}
+    .hero h1{font-size:clamp(34px,4.6vw,54px);margin:0 0 16px;letter-spacing:-.03em}
+    .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;
+                background-clip:text;color:transparent}
     .hero p{color:var(--muted);margin:0;font-size:17px;max-width:56ch}
     .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-    .demo-btn{background:var(--blue);color:#fff;padding:13px 22px;border-radius:10px;border:0;
+    .demo-btn{background:var(--grad);color:#fff;padding:13px 22px;border-radius:10px;border:0;
               font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;
-              display:inline-block;box-shadow:var(--shadow)}
-    .demo-btn:hover{background:var(--blue-600)}
+              display:inline-block;box-shadow:0 6px 22px rgba(11,117,255,.32)}
+    .demo-btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
+    .demo-btn{transition:filter .15s ease,transform .15s ease}
     .secondary{background:#fff;border:1px solid var(--line);padding:12px 20px;border-radius:10px;
                color:var(--ink);font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;
                display:inline-block}
@@ -88,12 +109,15 @@
 
     /* Hero cards -------------------------------------------------------- */
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .card{background:#fff;padding:18px;border-radius:var(--radius);
-          border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+    .card{background:#fff;padding:18px 18px 18px;border-radius:var(--radius);
+          border:1px solid var(--line);box-shadow:var(--shadow-sm);
+          position:relative;overflow:hidden;transition:box-shadow .15s ease,transform .15s ease}
+    .card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--grad)}
+    .card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
     .card h4{margin:0 0 6px;font-size:14px}
     .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
 
-    /* Hero panel — a product surface, not a code sample ------------------ */
+    /* Hero panel: a product surface, not a code sample ------------------- */
     .panel{background:#fff;border-radius:18px;padding:22px;border:1px solid var(--line);
            box-shadow:var(--shadow-lg)}
     .panel-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
@@ -113,6 +137,17 @@
 
     /* Sections ---------------------------------------------------------- */
     section{padding:72px 0;border-top:1px solid var(--line)}
+    /* Alternating surfaces give the page rhythm; without them it reads as
+       one long column of white. The sections sit inside .container, so a
+       plain background would stop at the content width and look like a
+       floating box; this bleeds it to the viewport edges instead. */
+    #platform,#how{position:relative;border-top:0}
+    #platform::before,#how::before{content:"";position:absolute;top:0;
+      left:50%;transform:translateX(-50%);width:100vw;height:100%;
+      background:var(--surface);border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);z-index:-1}
+    /* 100vw counts the scrollbar, which would otherwise add a horizontal one. */
+    body{overflow-x:hidden}
     .section-title h3{font-size:clamp(24px,3vw,34px);margin:0 0 10px}
     .section-title .muted{margin:0}
     .muted{color:var(--muted)}
@@ -125,6 +160,14 @@
     .state{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
            padding:24px;position:relative;overflow:hidden}
     .state::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--blue)}
+    /* One hue per state, so the three are distinguishable at a glance and
+       the eye can carry the mapping into the rest of the page. */
+    .state:nth-child(2)::before{background:var(--violet)}
+    .state:nth-child(3)::before{background:var(--cyan)}
+    .state:nth-child(2) .state-tag{color:#4c3fd0}
+    .state:nth-child(3) .state-tag{color:#07778f}
+    .state{transition:transform .15s ease,box-shadow .15s ease}
+    .state:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
     .state-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;
                text-transform:uppercase;color:var(--blue-ink);margin-bottom:10px}
     .state h4{font-size:17px;margin:0 0 8px}
@@ -178,7 +221,7 @@
     <header>
       <div class="brand">
         <div class="logo-wrap" aria-hidden="false">
-          <img src="logo.png" alt="Triscaler" width="36" height="36">
+          <img src="logo.png" alt="Triscaler" width="52" height="52">
         </div>
         <div>
           <div class="wordmark">Triscaler <span>Discovery</span></div>
@@ -197,10 +240,10 @@
     <main class="hero" role="main">
       <div>
         <div class="eyebrow">Data Security Posture Management</div>
-        <h1>Discover. Classify. Protect.</h1>
+        <h1>Discover. Classify. <em>Protect.</em></h1>
         <p class="muted">Triscaler Discovery finds the sensitive data your organisation
-        did not know it had — credentials, personal data, payment details — wherever it
-        sits, moves or is used. Then it tells you whose it is and what to do about it.</p>
+        did not know it had. Credentials, personal data, payment details, wherever they
+        sit, move or are used. Then it tells you whose they are and what to do about it.</p>
 
         <div class="cta-row" style="margin-top:22px">
           <a class="demo-btn" href="#contact">Request a demo</a>
@@ -210,7 +253,7 @@
         <div class="cards" style="margin-top:26px">
           <div class="card">
             <h4>Complete coverage</h4>
-            <p>Data at rest, in motion and in use — one platform, one view, one policy.</p>
+            <p>Data at rest, in motion and in use. One platform, one view, one policy.</p>
           </div>
           <div class="card">
             <h4>Precision over noise</h4>
@@ -251,7 +294,8 @@
       <div class="section-title">
         <h3>Sensitive data lives in three places. We cover all of them.</h3>
         <p class="muted" style="max-width:70ch">Most tools look at one and leave you to guess about
-        the rest. Triscaler was built around all three from the start — it is where the name comes from.</p>
+        the rest. Triscaler was built around all three from the start, and it is where the
+        name comes from.</p>
       </div>
 
       <div class="states">
@@ -265,14 +309,14 @@
         <div class="state">
           <div class="state-tag">In motion</div>
           <h4>Where it is going</h4>
-          <p class="muted">Clipboard, browser, uploads, removable media, messaging and mail — the
+          <p class="muted">Clipboard, browser, uploads, removable media, messaging and mail. The
           moment sensitive data leaves a controlled place for one you do not control.</p>
         </div>
         <div class="state">
           <div class="state-tag">In use</div>
           <h4>Who is touching it</h4>
           <p class="muted">Which applications and processes are reading sensitive files, when, and
-          on whose machine — so exposure is caught as it happens, not at the next audit.</p>
+          on whose machine, so exposure is caught as it happens rather than at the next audit.</p>
         </div>
       </div>
     </section>
@@ -287,7 +331,8 @@
         <div>
           <h4>Credentials &amp; secrets</h4>
           <p class="muted">Passwords, API keys, access tokens, private keys and connection strings
-          left in files, notes, scripts and screenshots — the quiet majority of real breaches.</p>
+          left in files, notes, scripts and screenshots. The quiet majority of real breaches
+          start here.</p>
 
           <h4 style="margin-top:18px">Personal data (PII)</h4>
           <p class="muted">Names, contact details, government identifiers and employee records,
@@ -298,16 +343,16 @@
           reference number is not mistaken for a real one.</p>
 
           <h4 style="margin-top:18px">Regulated &amp; confidential records</h4>
-          <p class="muted">Health information, contracts and intellectual property — classified by
-          the policies you set, not by a fixed list we decided for you.</p>
+          <p class="muted">Health information, contracts and intellectual property, classified by
+          the policies you set rather than a fixed list we decided for you.</p>
         </div>
 
         <div>
           <h4>Who is responsible</h4>
           <p class="muted">Every finding names the account it belongs to and the machine it sits on.
           When the same secret turns up across several machines, Triscaler shows you where it
-          appeared <em>first</em> — so you are talking to the right person, not the last one to
-          copy it.</p>
+          appeared <em>first</em>, so you are talking to the right person rather than the last
+          one to copy it.</p>
 
           <h4 style="margin-top:18px">Risk you can act on</h4>
           <p class="muted">Findings are scored and ranked, so the queue starts with what actually
@@ -315,7 +360,7 @@
 
           <h4 style="margin-top:18px">Evidence for auditors</h4>
           <p class="muted">A durable record of what was found, who looked at it, what they decided
-          and when — the trail regulators and customers ask for.</p>
+          and when. The trail regulators and customers ask for.</p>
 
           <h4 style="margin-top:18px">Supports obligations under</h4>
           <p class="muted">GDPR &middot; India DPDP Act &middot; PCI DSS &middot; HIPAA &middot; ISO 27001 &middot; SOC 2</p>
@@ -333,16 +378,16 @@
         <div>
           <ol class="how-list">
             <li><strong>Deploy:</strong> A lightweight agent installs in minutes, with no administrator rights and no change to how people work.</li>
-            <li><strong>Discover:</strong> Continuous discovery across all three data states — not a quarterly scan that is stale by the time it finishes.</li>
+            <li><strong>Discover:</strong> Continuous discovery across all three data states, not a quarterly scan that is stale by the time it finishes.</li>
             <li><strong>Classify:</strong> Findings are categorised and scored, with several independent signals required to agree before anything is raised.</li>
             <li><strong>Attribute:</strong> Each finding is tied to an owner, a machine and a first sighting, so it can be acted on rather than investigated.</li>
-            <li><strong>Respond:</strong> Alert, raise a ticket, or quarantine — with the whole decision trail preserved.</li>
+            <li><strong>Respond:</strong> Alert, raise a ticket, or quarantine, with the whole decision trail preserved.</li>
           </ol>
         </div>
         <div>
           <h4>Built so the data never leaves</h4>
           <p class="muted">Analysis happens on the endpoint. Your files, documents and images are
-          never uploaded — only the redacted finding itself travels, and it is encrypted at rest
+          never uploaded. Only the redacted finding itself travels, and it is encrypted at rest
           and in transit.</p>
 
           <h4 style="margin-top:18px">Quiet enough to be read</h4>
@@ -380,7 +425,7 @@
             <ul style="margin:12px 0;color:var(--muted)">
               <li>All three data states in one platform, not three products</li>
               <li>Findings that name an owner, not just a file path</li>
-              <li>Analysis on the endpoint — your content never leaves it</li>
+              <li>Analysis on the endpoint, so your content never leaves it</li>
               <li>Enterprise capability without enterprise overhead</li>
             </ul>
             <p style="color:var(--muted);margin-top:12px;font-size:13px">Contact details above are for product &amp; partnership enquiries.</p>
@@ -393,8 +438,8 @@
     <footer style="margin-top:30px">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:42px;height:42px;display:flex;align-items:center;justify-content:center">
-            <img src="logo.png" alt="Triscaler" width="32" height="32" style="display:block;object-fit:contain">
+          <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center">
+            <img src="logo.png" alt="Triscaler" width="44" height="44" style="display:block;object-fit:contain">
           </div>
           <div>
             <div style="font-weight:700">Triscaler</div>
