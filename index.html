@@ -75,10 +75,14 @@
     .container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
 
     /* Header ------------------------------------------------------------ */
-    header{display:flex;align-items:center;justify-content:space-between;
-           padding:16px 0;position:sticky;top:0;z-index:20;
-           background:#fff;border-bottom:1px solid var(--line);
-           transition:box-shadow .2s ease}
+    /* Full width: the bar has to span the window, or its background stops at
+       the content width and it reads as a floating white card with the page
+       colour either side of it. The inner container keeps its contents lined
+       up with everything below. */
+    header{position:sticky;top:0;z-index:20;background:#fff;
+           border-bottom:1px solid var(--line);transition:box-shadow .2s ease}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;
+                  padding-top:14px;padding-bottom:14px}
     header.scrolled{box-shadow:0 4px 18px rgba(13,21,38,.07)}
     .brand{display:flex;align-items:center;gap:11px;padding:4px 8px 4px 0;border-radius:10px;
            transition:opacity .15s ease}
@@ -178,8 +182,12 @@
       left:50%;transform:translateX(-50%);width:100vw;height:100%;
       background:var(--surface);border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);z-index:-1}
-    /* 100vw counts the scrollbar, which would otherwise add a horizontal one. */
-    body{overflow-x:hidden}
+    /* 100vw counts the scrollbar, which would otherwise add a horizontal one.
+       `clip` rather than `hidden` on purpose: `overflow:hidden` turns the
+       element into a scroll container, which silently breaks `position:sticky`
+       on descendants, and the header is sticky. `clip` crops without that
+       side effect. */
+    html{overflow-x:clip}
     .section-title h3{font-size:clamp(24px,3vw,34px);margin:0 0 10px}
     .section-title .muted{margin:0}
     .muted{color:var(--muted)}
@@ -257,8 +265,8 @@
 </head>
 <body>
 
-  <div class="container">
-    <header>
+  <header>
+    <div class="container header-inner">
       <a class="brand" href="./" aria-label="Triscaler home" style="text-decoration:none">
         <div class="logo-wrap" aria-hidden="false">
           <img src="logo.png" alt="Triscaler" width="52" height="52">
@@ -275,7 +283,10 @@
         <a href="#how">How it works</a>
         <a class="cta" href="#contact">Request a demo</a>
       </nav>
-    </header>
+    </div>
+  </header>
+
+  <div class="container">
 
     <!-- HERO -->
     <main class="hero" role="main">
