@@ -30,11 +30,10 @@
       /* A second hue so the page is not one blue repeated. Violet sits
          beside the brand blue without competing with the status colours,
          which stay reserved for severity and must never read as decoration. */
-      --violet:#6d5efc;
-      --violet-wash:#f1efff;
-      --cyan:#0aa5c9;
-      --grad:linear-gradient(120deg,#0b75ff 0%,#6d5efc 55%,#8b5cf6 100%);
-      --grad-soft:linear-gradient(135deg,#eef5ff 0%,#f1efff 60%,#fdf2ff 100%);
+      /* One accent, used sparingly. Gradients on the headline, the buttons,
+         the hero field and three separate state hues were four ideas
+         competing; restraint reads as a product, colour everywhere reads as
+         a template. */
       --ink:#0d1526;
       --muted:#5b6678;
       --faint:#8892a4;
@@ -46,6 +45,7 @@
       --warning:#fab219;
       --good:#0ca30c;
       --max-w:1120px;
+      --header-h:85px;
       --radius:14px;
       --shadow-sm:0 1px 2px rgba(13,21,38,.05);
       --shadow:0 4px 20px rgba(13,21,38,.07);
@@ -81,10 +81,9 @@
     nav{display:flex;gap:26px;align-items:center}
     nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:14px}
     nav a:hover{color:var(--ink)}
-    .cta{background:var(--grad);color:#fff!important;padding:9px 16px;border-radius:9px;
-         text-decoration:none;font-weight:600;font-size:14px;
-         box-shadow:0 2px 10px rgba(11,117,255,.28)}
-    .cta:hover{filter:brightness(1.07)}
+    .cta{background:var(--blue);color:#fff!important;padding:9px 16px;border-radius:9px;
+         text-decoration:none;font-weight:600;font-size:14px}
+    .cta:hover{background:var(--blue-600)}
 
     /* Hero -------------------------------------------------------------- */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center;
@@ -93,22 +92,20 @@
        tinting the text sitting on it. */
     .hero::before{content:"";position:absolute;left:50%;transform:translateX(-50%);
                   top:-120px;width:100vw;height:calc(100% + 120px);
-                  background:var(--grad-soft);z-index:-1;
+                  background:linear-gradient(180deg,#f4f8ff 0%,#ffffff 100%);z-index:-1;
                   -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);
                   mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
     .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.09em;
              text-transform:uppercase;color:var(--blue-ink);background:var(--blue-wash);
              padding:5px 11px;border-radius:999px;margin-bottom:18px}
     .hero h1{font-size:clamp(34px,4.6vw,54px);margin:0 0 16px;letter-spacing:-.03em}
-    .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;
-                background-clip:text;color:transparent}
+    .hero h1 em{font-style:normal;color:var(--blue)}
     .hero p{color:var(--muted);margin:0;font-size:17px;max-width:56ch}
     .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-    .demo-btn{background:var(--grad);color:#fff;padding:13px 22px;border-radius:10px;border:0;
+    .demo-btn{background:var(--blue);color:#fff;padding:13px 22px;border-radius:10px;border:0;
               font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;
-              display:inline-block;box-shadow:0 6px 22px rgba(11,117,255,.32)}
-    .demo-btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
-    .demo-btn{transition:filter .15s ease,transform .15s ease}
+              display:inline-block;transition:background .15s ease}
+    .demo-btn:hover{background:var(--blue-600)}
     .secondary{background:#fff;border:1px solid var(--line);padding:12px 20px;border-radius:10px;
                color:var(--ink);font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;
                display:inline-block}
@@ -119,7 +116,6 @@
     .card{background:#fff;padding:18px 18px 18px;border-radius:var(--radius);
           border:1px solid var(--line);box-shadow:var(--shadow-sm);
           position:relative;overflow:hidden;transition:box-shadow .15s ease,transform .15s ease}
-    .card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--grad)}
     .card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
     .card h4{margin:0 0 6px;font-size:14px}
     .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
@@ -146,7 +142,7 @@
     section{padding:72px 0;border-top:1px solid var(--line);
             /* Clear the sticky header, or a jump to #contact lands with the
                heading hidden behind it. */
-            scroll-margin-top:84px}
+            scroll-margin-top:calc(var(--header-h) + 16px)}
     /* Alternating surfaces give the page rhythm; without them it reads as
        one long column of white. The sections sit inside .container, so a
        plain background would stop at the content width and look like a
@@ -172,16 +168,21 @@
     .state::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--blue)}
     /* One hue per state, so the three are distinguishable at a glance and
        the eye can carry the mapping into the rest of the page. */
-    .state:nth-child(2)::before{background:var(--violet)}
-    .state:nth-child(3)::before{background:var(--cyan)}
-    .state:nth-child(2) .state-tag{color:#4c3fd0}
-    .state:nth-child(3) .state-tag{color:#07778f}
     .state{transition:transform .15s ease,box-shadow .15s ease}
     .state:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
     .state-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;
                text-transform:uppercase;color:var(--blue-ink);margin-bottom:10px}
     .state h4{font-size:17px;margin:0 0 8px}
     .state p{margin:0;font-size:14px}
+
+    /* Feature grid: equal cells, so headings line up across columns. Two
+       free-flowing text columns drifted out of step as soon as one entry
+       wrapped to a different number of lines. */
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+    .feature{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+             padding:20px;display:flex;flex-direction:column;gap:6px}
+    .feature h4{margin:0;font-size:15px}
+    .feature p{margin:0;font-size:13.5px;line-height:1.55}
 
     /* How it works ------------------------------------------------------ */
     .how-list{margin:0;padding-left:0;list-style:none;counter-reset:step}
@@ -211,12 +212,14 @@
       .hero{grid-template-columns:1fr;gap:38px;padding:48px 0}
       .grid-2{grid-template-columns:1fr;gap:32px}
       .states{grid-template-columns:1fr}
+      .feature-grid{grid-template-columns:repeat(2,1fr)}
       .contact-grid{grid-template-columns:1fr!important}
       nav a:not(.cta){display:none}
       section{padding:52px 0}
     }
     @media (max-width:560px){
       .cards{grid-template-columns:1fr}
+      .feature-grid{grid-template-columns:1fr}
       .stat-row{gap:16px}
       .container{padding:0 20px}
     }
@@ -333,45 +336,52 @@
     <section id="solutions">
       <div class="section-title">
         <h3>What it finds</h3>
+        <p class="muted" style="max-width:70ch">Four categories, one queue, ranked so the top of the
+        list is the thing worth doing first.</p>
       </div>
 
-      <div class="grid-2" style="margin-top:18px">
-        <div>
-          <h4>Credentials &amp; secrets</h4>
+      <div class="feature-grid">
+        <div class="feature">
+          <h4>Credentials and secrets</h4>
           <p class="muted">Passwords, API keys, access tokens, private keys and connection strings
-          left in files, notes, scripts and screenshots. The quiet majority of real breaches
-          start here.</p>
-
-          <h4 style="margin-top:18px">Personal data (PII)</h4>
+          left in files, notes, scripts and screenshots. The quiet majority of real breaches start
+          here.</p>
+        </div>
+        <div class="feature">
+          <h4>Personal data (PII)</h4>
           <p class="muted">Names, contact details, government identifiers and employee records,
           wherever they have been copied out of the systems meant to hold them.</p>
-
-          <h4 style="margin-top:18px">Payment &amp; financial data</h4>
+        </div>
+        <div class="feature">
+          <h4>Payment and financial data</h4>
           <p class="muted">Card numbers, bank details and financial records, validated so a
           reference number is not mistaken for a real one.</p>
-
-          <h4 style="margin-top:18px">Regulated &amp; confidential records</h4>
+        </div>
+        <div class="feature">
+          <h4>Regulated and confidential records</h4>
           <p class="muted">Health information, contracts and intellectual property, classified by
           the policies you set rather than a fixed list we decided for you.</p>
         </div>
-
-        <div>
+        <div class="feature">
           <h4>Who is responsible</h4>
           <p class="muted">Every finding names the account it belongs to and the machine it sits on.
-          When the same secret turns up across several machines, Triscaler shows you where it
-          appeared <em>first</em>, so you are talking to the right person rather than the last
-          one to copy it.</p>
-
-          <h4 style="margin-top:18px">Risk you can act on</h4>
-          <p class="muted">Findings are scored and ranked, so the queue starts with what actually
-          matters rather than everything that matched a pattern.</p>
-
-          <h4 style="margin-top:18px">Evidence for auditors</h4>
+          When the same secret appears across several machines, Triscaler shows where it appeared
+          first, so you are talking to the right person.</p>
+        </div>
+        <div class="feature">
+          <h4>Risk you can act on</h4>
+          <p class="muted">Findings are scored and ranked, so the queue starts with what matters
+          rather than everything that matched a pattern.</p>
+        </div>
+        <div class="feature">
+          <h4>Evidence for auditors</h4>
           <p class="muted">A durable record of what was found, who looked at it, what they decided
           and when. The trail regulators and customers ask for.</p>
-
-          <h4 style="margin-top:18px">Supports obligations under</h4>
-          <p class="muted">GDPR &middot; India DPDP Act &middot; PCI DSS &middot; HIPAA &middot; ISO 27001 &middot; SOC 2</p>
+        </div>
+        <div class="feature">
+          <h4>Supports obligations under</h4>
+          <p class="muted">GDPR &middot; India DPDP Act &middot; PCI DSS &middot; HIPAA &middot;
+          ISO 27001 &middot; SOC 2</p>
         </div>
       </div>
     </section>
