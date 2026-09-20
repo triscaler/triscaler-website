@@ -18,6 +18,13 @@
   <link rel="icon" type="image/png" sizes="180x180" href="favicon-180.png">
   <link rel="apple-touch-icon" href="favicon-180.png">
 
+  <script>
+    // Runs before the body parses, so the browser never performs the jump
+    // rather than performing it and being scrolled back, which flickers.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  </script>
+
   <style>
     /* One stylesheet, no framework, no webfont. The whole page is a single
        file that renders on first paint, which is the honest version of
@@ -70,8 +77,7 @@
     /* Header ------------------------------------------------------------ */
     header{display:flex;align-items:center;justify-content:space-between;
            padding:16px 0;position:sticky;top:0;z-index:20;
-           background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(12px);
-           border-bottom:1px solid var(--line)}
+           background:#fff;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:10px}
     .logo-wrap{width:52px;height:52px;display:flex;align-items:center;justify-content:center}
     .logo-wrap img{width:52px;height:52px;object-fit:contain;display:block}
@@ -91,7 +97,7 @@
     /* A wash that bleeds past the container, so the fold has colour without
        tinting the text sitting on it. */
     .hero::before{content:"";position:absolute;left:50%;transform:translateX(-50%);
-                  top:-120px;width:100vw;height:calc(100% + 120px);
+                  top:0;width:100vw;height:100%;
                   background:linear-gradient(180deg,#f4f8ff 0%,#ffffff 100%);z-index:-1;
                   -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);
                   mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
@@ -479,6 +485,9 @@
 
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
+    // Belt and braces: if the browser restored a position anyway, land at
+    // the top once everything has loaded.
+    window.addEventListener('load', function () { window.scrollTo(0, 0); });
   </script>
 </body>
 </html>
