@@ -3,100 +3,173 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Triscaler — Cloud Security</title>
-  <meta name="description" content="Triscaler — agentless cloud breach containment. Ingest CloudTrail & CloudWatch, detect threats, and safely contain compromised resources." />
+  <title>Triscaler Discovery — Find your sensitive data before someone else does</title>
+  <meta name="description" content="Triscaler Discovery finds sensitive data across your endpoints — credentials, PII and payment data — at rest, in motion and in use. Know what you hold, where it lives, and who is responsible." />
+  <link rel="canonical" href="https://triscaler.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://triscaler.com/" />
+  <meta property="og:title" content="Triscaler Discovery" />
+  <meta property="og:description" content="Find sensitive data across your endpoints — credentials, PII and payment data — at rest, in motion and in use." />
+  <meta property="og:image" content="https://triscaler.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0b75ff" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b75ff'/><path d='M50 18 L65 40 L50 34 L35 40 Z' fill='white'/></svg>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <style>
+    /* One stylesheet, no framework, no webfont. The whole page is a single
+       file that renders on first paint — which is the honest version of
+       "lightweight" for a product that sells carefulness. */
     :root{
       --blue:#0b75ff;
-      --blue-700:#0a63d6;
-      --muted:#6b7280;
+      --blue-600:#0a63d6;
+      --blue-ink:#084da8;
+      --blue-wash:#eef5ff;
+      --ink:#0d1526;
+      --muted:#5b6678;
+      --faint:#8892a4;
+      --line:#e6ebf2;
       --bg:#ffffff;
-      --card:#f8fafc;
-      --max-w:1100px;
-      --radius:12px;
-      --accent:#0b75ff;
-      --text:#0f1724;
-      --glass: rgba(255,255,255,0.6);
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --surface:#f7f9fc;
+      --critical:#d03b3b;
+      --serious:#ec835a;
+      --warning:#fab219;
+      --good:#0ca30c;
+      --max-w:1120px;
+      --radius:14px;
+      --shadow-sm:0 1px 2px rgba(13,21,38,.05);
+      --shadow:0 4px 20px rgba(13,21,38,.07);
+      --shadow-lg:0 18px 50px rgba(11,117,255,.13);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;color:var(--text);background:linear-gradient(180deg,#ffffff 0%, #f7f9fb 100%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--bg);line-height:1.6;
+         -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     a{color:inherit}
-    .container{max-width:var(--max-w);margin:0 auto;padding:28px}
+    h1,h2,h3,h4{line-height:1.2;letter-spacing:-.02em}
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
 
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0;position:sticky;top:0;background-color:var(--bg);z-index:1}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo-wrap{width:60px;height:60px;display:flex;align-items:center;justify-content:center}
-    .wordmark{font-weight:700;font-size:20px;color:var(--text);letter-spacing:.2px}
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
-    .cta{background:var(--blue);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px}
+    /* Header ------------------------------------------------------------ */
+    header{display:flex;align-items:center;justify-content:space-between;
+           padding:16px 0;position:sticky;top:0;z-index:20;
+           background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(12px);
+           border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo-wrap{width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+    .logo-wrap img{width:36px;height:36px;object-fit:contain;display:block}
+    .wordmark{font-weight:700;font-size:17px;letter-spacing:-.01em}
+    .wordmark span{color:var(--faint);font-weight:500}
+    .brand-sub{font-size:11.5px;color:var(--faint);line-height:1.2;margin-top:1px}
+    nav{display:flex;gap:26px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:14px}
+    nav a:hover{color:var(--ink)}
+    .cta{background:var(--blue);color:#fff!important;padding:9px 16px;border-radius:9px;
+         text-decoration:none;font-weight:600;font-size:14px;box-shadow:var(--shadow-sm)}
+    .cta:hover{background:var(--blue-600)}
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 440px;gap:36px;align-items:center;padding:36px 0}
-    .hero h1{font-size:34px;margin:0 0 12px}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .cta-row{display:flex;gap:12px;align-items:center}
-    .demo-btn{background:var(--blue);color:#fff;padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
-    .secondary{background:transparent;border:1px solid #e6eefc;padding:10px 14px;border-radius:10px;color:var(--blue);font-weight:700;cursor:pointer}
+    /* Hero -------------------------------------------------------------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center;
+          padding:72px 0 64px;position:relative}
+    .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.09em;
+             text-transform:uppercase;color:var(--blue-ink);background:var(--blue-wash);
+             padding:5px 11px;border-radius:999px;margin-bottom:18px}
+    .hero h1{font-size:clamp(34px,4.6vw,52px);margin:0 0 16px;letter-spacing:-.03em}
+    .hero p{color:var(--muted);margin:0;font-size:17px;max-width:56ch}
+    .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .demo-btn{background:var(--blue);color:#fff;padding:13px 22px;border-radius:10px;border:0;
+              font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;
+              display:inline-block;box-shadow:var(--shadow)}
+    .demo-btn:hover{background:var(--blue-600)}
+    .secondary{background:#fff;border:1px solid var(--line);padding:12px 20px;border-radius:10px;
+               color:var(--ink);font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;
+               display:inline-block}
+    .secondary:hover{border-color:#cfd9e6;background:var(--surface)}
 
-    /* Card list */
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(12,34,60,0.06);border:1px solid #f1f5f9}
-    .card h4{margin:0 0 8px;font-size:15px}
-    .card p{margin:0;color:var(--muted);font-size:13px}
+    /* Hero cards -------------------------------------------------------- */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{background:#fff;padding:18px;border-radius:var(--radius);
+          border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+    .card h4{margin:0 0 6px;font-size:14px}
+    .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
 
-    /* Illustration / phone panel */
-    .panel{background:linear-gradient(180deg,#f7fbff,#ffffff);border-radius:14px;padding:20px;border:1px solid #e6f0ff;box-shadow:0 6px 24px rgba(11,117,255,0.06)}
-    .panel pre{white-space:pre-wrap;font-size:13px;color:var(--muted);margin:0}
+    /* Hero panel — a product surface, not a code sample ------------------ */
+    .panel{background:#fff;border-radius:18px;padding:22px;border:1px solid var(--line);
+           box-shadow:var(--shadow-lg)}
+    .panel-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+                 color:var(--faint);margin-bottom:16px}
+    .stat-row{display:flex;gap:22px;margin-bottom:18px}
+    .stat{display:flex;flex-direction:column}
+    .stat-value{font-size:26px;font-weight:700;letter-spacing:-.03em}
+    .stat-label{font-size:12px;color:var(--faint)}
+    .bar{display:flex;height:8px;border-radius:5px;overflow:hidden;gap:2px;margin-bottom:18px}
+    .panel-list{list-style:none;margin:0;padding:0;font-size:13.5px}
+    .panel-list li{display:flex;align-items:center;gap:9px;padding:8px 0;
+                   border-bottom:1px solid var(--line);color:var(--muted)}
+    .panel-list li:last-child{border-bottom:0}
+    .panel-list b{margin-left:auto;color:var(--ink);font-variant-numeric:tabular-nums}
+    .dot{width:8px;height:8px;border-radius:3px;flex:none}
+    .panel-foot{font-size:11px;color:var(--faint);margin-top:14px;text-align:right}
 
-    /* Sections */
-    section{padding:40px 0;border-top:1px solid #f1f5f9}
-    .section-title{display:flex;align-items:baseline;gap:14px}
-    .section-title h3{margin:0;font-size:20px}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
-    .how-list{list-style:none;padding:0;margin:0}
-    .how-list li{padding:12px 0;border-bottom:1px dashed #eef2f7;color:var(--muted)}
+    /* Sections ---------------------------------------------------------- */
+    section{padding:72px 0;border-top:1px solid var(--line)}
+    .section-title h3{font-size:clamp(24px,3vw,34px);margin:0 0 10px}
+    .section-title .muted{margin:0}
+    .muted{color:var(--muted)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+    section h4{font-size:16px;margin:0 0 6px}
+    section .grid-2 p{margin:0;font-size:14.5px}
 
-    /* Footer / contact */
-    footer{padding:28px 0;color:var(--muted)}
-    footer .container > div { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-    .contact-box{background:#fff;padding:18px;border-radius:12px;border:1px solid #eef4ff}
-    .socials{display:flex;gap:12px;align-items:center}
-    .socials a { margin-right: 15px; font-size: 20px; }
+    /* Three states ------------------------------------------------------ */
+    .states{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+    .state{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+           padding:24px;position:relative;overflow:hidden}
+    .state::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--blue)}
+    .state-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;
+               text-transform:uppercase;color:var(--blue-ink);margin-bottom:10px}
+    .state h4{font-size:17px;margin:0 0 8px}
+    .state p{margin:0;font-size:14px}
 
-    /* Responsive */
-    @media (max-width:960px){
-      .hero{grid-template-columns:1fr;gap:18px}
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .grid-2{grid-template-columns:1fr}
+    /* How it works ------------------------------------------------------ */
+    .how-list{margin:0;padding-left:0;list-style:none;counter-reset:step}
+    .how-list li{counter-increment:step;position:relative;padding:0 0 22px 46px;color:var(--muted);
+                 font-size:14.5px}
+    .how-list li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;
+                         border-radius:9px;background:var(--blue-wash);color:var(--blue-ink);
+                         display:flex;align-items:center;justify-content:center;
+                         font-weight:700;font-size:13px}
+    .how-list strong{color:var(--ink)}
+
+    /* Contact ----------------------------------------------------------- */
+    .contact-box{background:var(--surface);border:1px solid var(--line);
+                 border-radius:var(--radius);padding:24px}
+    #contact ul{padding-left:18px}
+    #contact li{margin-bottom:7px;font-size:14px}
+
+    /* Footer ------------------------------------------------------------ */
+    footer{border-top:1px solid var(--line);padding:28px 0 40px;margin-top:0}
+    .socials{display:flex;gap:14px}
+    .socials a{color:var(--faint);display:flex}
+    .socials a:hover{color:var(--blue)}
+    .socials svg{width:18px;height:18px;fill:currentColor}
+
+    /* Responsive -------------------------------------------------------- */
+    @media (max-width:940px){
+      .hero{grid-template-columns:1fr;gap:38px;padding:48px 0}
+      .grid-2{grid-template-columns:1fr;gap:32px}
+      .states{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr!important}
+      nav a:not(.cta){display:none}
+      section{padding:52px 0}
     }
-    @media (max-width:768px) {
-      header {
-        flex-direction: column;
-        gap: 12px;
-      }
-      .hero h1 {
-        font-size: 28px;
-      }
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
     @media (max-width:560px){
       .cards{grid-template-columns:1fr}
+      .stat-row{gap:16px}
+      .container{padding:0 20px}
     }
-
-    /* small utilities */
-    .muted{color:var(--muted)}
-    .kbd{background:#f1f5f9;padding:6px 10px;border-radius:8px;font-weight:700;color:var(--blue)}
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+    }
   </style>
 </head>
 <body>
@@ -104,27 +177,12 @@
   <div class="container">
     <header>
       <div class="brand">
-        <div class="logo-wrap" aria-hidden="true">
-          <!-- Inline SVG eagle-shield (symbol-only) -->
-          <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle">
-            <title id="logoTitle">Triscaler logo</title>
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#0b75ff"/>
-                <stop offset="1" stop-color="#0a63d6"/>
-              </linearGradient>
-            </defs>
-            <!-- shield -->
-            <path d="M50 8 L82 22 V52 C82 72 65 88 50 96 C35 88 18 72 18 52 V22 Z" fill="url(#g1)"/>
-            <!-- eagle head -->
-            <path d="M34 44 C40 38 52 36 60 40 C57 36 52 34 48 34 C42 34 36 36 34 44 Z" fill="#fff"/>
-            <path d="M40 52 C48 46 58 46 66 50 C64 48 58 46 52 48 C46 50 42 52 40 52 Z" fill="#fff"/>
-            <path d="M60 56 L70 54 L66 60 Z" fill="#fff"/>
-          </svg>
+        <div class="logo-wrap" aria-hidden="false">
+          <img src="logo.png" alt="Triscaler" width="36" height="36">
         </div>
         <div>
-          <div class="wordmark">Triscaler</div>
-          <div style="font-size:12px;color:var(--muted)">Automated Cloud Breach Containment</div>
+          <div class="wordmark">Triscaler <span>Discovery</span></div>
+          <div class="brand-sub">Know where your sensitive data lives</div>
         </div>
       </div>
 
@@ -138,75 +196,129 @@
     <!-- HERO -->
     <main class="hero" role="main">
       <div>
-        <h1>Secure. Detect. Contain.</h1>
-        <p class="muted">Agentless cloud breach containment for modern multi-cloud environments. Ingest CloudTrail, CloudWatch & VPC Flow logs — and safely isolate compromised resources with auditable playbooks.</p>
+        <div class="eyebrow">Data Security Posture Management</div>
+        <h1>Discover. Classify. Protect.</h1>
+        <p class="muted">Triscaler Discovery finds the sensitive data your organisation
+        did not know it had — credentials, personal data, payment details — wherever it
+        sits, moves or is used. Then it tells you whose it is and what to do about it.</p>
 
-        <!-- <div class="cta-row" style="margin-top:18px">
-          <a class="demo-btn" href="#contact">Request Demo</a>
-          <button class="secondary" onclick="scrollToContact()">Contact Sales</button>
-        </div> -->
+        <div class="cta-row" style="margin-top:22px">
+          <a class="demo-btn" href="#contact">Request a demo</a>
+          <a class="secondary" href="#platform">See what it finds</a>
+        </div>
 
-        <div class="cards" style="margin-top:24px">
+        <div class="cards" style="margin-top:26px">
           <div class="card">
-            <h4>Agentless</h4>
-            <p>Fast onboarding via least-privilege role — no agents required.</p>
+            <h4>Complete coverage</h4>
+            <p>Data at rest, in motion and in use — one platform, one view, one policy.</p>
           </div>
           <div class="card">
-            <h4>Safe Containment</h4>
-            <p>Human-in-loop and rollback-first playbooks to prevent downtime.</p>
+            <h4>Precision over noise</h4>
+            <p>Multiple independent signals must agree before anything reaches an analyst.</p>
           </div>
           <div class="card">
-            <h4>Audit & Compliance</h4>
-            <p>Immutable logs and evidence for forensics and regulators.</p>
+            <h4>Answers, not alerts</h4>
+            <p>Every finding names the data, the owner, the machine and the first sighting.</p>
           </div>
         </div>
       </div>
 
       <div class="panel" aria-hidden="true">
-        <pre><strong>Sample – containment playbook (YAML)</strong>
-
-- name: CompromisedIAMKey
-  detect: cloudtrail.event_name == "CreateAccessKey"
-  risk: high
-  actions:
-    - type: suspend_access_key
-      approval: required
-    - type: notify_owner
-      channel: slack
-    - type: preserve_logs
-  audit: true
-        </pre>
+        <div class="panel-title">Discovery summary</div>
+        <div class="stat-row">
+          <div class="stat"><span class="stat-value">1,284</span><span class="stat-label">sensitive items</span></div>
+          <div class="stat"><span class="stat-value">96</span><span class="stat-label">endpoints</span></div>
+          <div class="stat"><span class="stat-value">31</span><span class="stat-label">owners</span></div>
+        </div>
+        <div class="bar" role="img" aria-label="Severity mix">
+          <span style="flex:34;background:#d03b3b"></span>
+          <span style="flex:26;background:#ec835a"></span>
+          <span style="flex:22;background:#fab219"></span>
+          <span style="flex:18;background:#0ca30c"></span>
+        </div>
+        <ul class="panel-list">
+          <li><span class="dot" style="background:#d03b3b"></span> Credentials &amp; secrets <b>412</b></li>
+          <li><span class="dot" style="background:#ec835a"></span> Personal data (PII) <b>386</b></li>
+          <li><span class="dot" style="background:#fab219"></span> Payment card data <b>271</b></li>
+          <li><span class="dot" style="background:#0b75ff"></span> Financial &amp; health records <b>215</b></li>
+        </ul>
+        <div class="panel-foot">Illustrative view</div>
       </div>
     </main>
 
-    <!-- Solutions -->
+    <!-- The three states -->
+    <section id="platform">
+      <div class="section-title">
+        <h3>Sensitive data lives in three places. We cover all of them.</h3>
+        <p class="muted" style="max-width:70ch">Most tools look at one and leave you to guess about
+        the rest. Triscaler was built around all three from the start — it is where the name comes from.</p>
+      </div>
+
+      <div class="states">
+        <div class="state">
+          <div class="state-tag">At rest</div>
+          <h4>Where it is stored</h4>
+          <p class="muted">Laptops and workstations, local databases, configuration files, notes,
+          exports, archives, and the screenshots people take of them. The places data quietly
+          accumulates and nobody reviews.</p>
+        </div>
+        <div class="state">
+          <div class="state-tag">In motion</div>
+          <h4>Where it is going</h4>
+          <p class="muted">Clipboard, browser, uploads, removable media, messaging and mail — the
+          moment sensitive data leaves a controlled place for one you do not control.</p>
+        </div>
+        <div class="state">
+          <div class="state-tag">In use</div>
+          <h4>Who is touching it</h4>
+          <p class="muted">Which applications and processes are reading sensitive files, when, and
+          on whose machine — so exposure is caught as it happens, not at the next audit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What it finds -->
     <section id="solutions">
       <div class="section-title">
-        <h3>Solutions</h3>
+        <h3>What it finds</h3>
       </div>
 
       <div class="grid-2" style="margin-top:18px">
         <div>
-          <h4>Cloud Breach Containment</h4>
-          <p class="muted">Precision playbooks that isolate compromised resources — IAM keys, compute workloads, or functions — while preserving business continuity and evidence.</p>
+          <h4>Credentials &amp; secrets</h4>
+          <p class="muted">Passwords, API keys, access tokens, private keys and connection strings
+          left in files, notes, scripts and screenshots — the quiet majority of real breaches.</p>
 
-          <h4 style="margin-top:18px">Cloud Security Posture</h4>
-          <p class="muted">Continuous monitoring for risky configurations and privilege drift with actionable remediation suggestions.</p>
+          <h4 style="margin-top:18px">Personal data (PII)</h4>
+          <p class="muted">Names, contact details, government identifiers and employee records,
+          wherever they have been copied out of the systems meant to hold them.</p>
 
-          <h4 style="margin-top:18px">Forensics & Compliance</h4>
-          <p class="muted">Audit-ready trails, export to SIEM, and exportable incident reports for compliance teams.</p>
+          <h4 style="margin-top:18px">Payment &amp; financial data</h4>
+          <p class="muted">Card numbers, bank details and financial records, validated so a
+          reference number is not mistaken for a real one.</p>
+
+          <h4 style="margin-top:18px">Regulated &amp; confidential records</h4>
+          <p class="muted">Health information, contracts and intellectual property — classified by
+          the policies you set, not by a fixed list we decided for you.</p>
         </div>
 
         <div>
-          <h4>Key Integrations</h4>
-          <ul class="muted">
-            <li>AWS CloudTrail, CloudWatch, VPC Flow Logs</li>
-            <li>Slack, MS Teams, SIEM</li>
-            <li>Terraform & CI pipelines for infra guardrails</li>
-          </ul>
+          <h4>Who is responsible</h4>
+          <p class="muted">Every finding names the account it belongs to and the machine it sits on.
+          When the same secret turns up across several machines, Triscaler shows you where it
+          appeared <em>first</em> — so you are talking to the right person, not the last one to
+          copy it.</p>
 
-          <h4 style="margin-top:18px">Deployment Models</h4>
-          <p class="muted">SaaS (fast), Private SaaS (dedicated instances), or On-prem for regulated customers.</p>
+          <h4 style="margin-top:18px">Risk you can act on</h4>
+          <p class="muted">Findings are scored and ranked, so the queue starts with what actually
+          matters rather than everything that matched a pattern.</p>
+
+          <h4 style="margin-top:18px">Evidence for auditors</h4>
+          <p class="muted">A durable record of what was found, who looked at it, what they decided
+          and when — the trail regulators and customers ask for.</p>
+
+          <h4 style="margin-top:18px">Supports obligations under</h4>
+          <p class="muted">GDPR &middot; India DPDP Act &middot; PCI DSS &middot; HIPAA &middot; ISO 27001 &middot; SOC 2</p>
         </div>
       </div>
     </section>
@@ -220,16 +332,25 @@
       <div style="margin-top:18px" class="grid-2">
         <div>
           <ol class="how-list">
-            <li><strong>Ingest:</strong> Collect CloudTrail & CloudWatch events into a secure S3 bucket for processing.</li>
-            <li><strong>Detect:</strong> Rule-based and anomaly scoring to prioritize incidents.</li>
-            <li><strong>Decide:</strong> Playbook engine maps detection to staged containment steps and approvals.</li>
-            <li><strong>Contain:</strong> Execute safe actions — suspend keys, quarantine instances, throttle functions.</li>
-            <li><strong>Audit:</strong> Preserve logs & produce a tamper-evident report for forensics.</li>
+            <li><strong>Deploy:</strong> A lightweight agent installs in minutes, with no administrator rights and no change to how people work.</li>
+            <li><strong>Discover:</strong> Continuous discovery across all three data states — not a quarterly scan that is stale by the time it finishes.</li>
+            <li><strong>Classify:</strong> Findings are categorised and scored, with several independent signals required to agree before anything is raised.</li>
+            <li><strong>Attribute:</strong> Each finding is tied to an owner, a machine and a first sighting, so it can be acted on rather than investigated.</li>
+            <li><strong>Respond:</strong> Alert, raise a ticket, or quarantine — with the whole decision trail preserved.</li>
           </ol>
         </div>
         <div>
-          <h4>Designed for minimal risk</h4>
-          <p class="muted">Containment actions are staged: monitor → soft-quarantine → hard-quarantine. Human approvals, rollbacks, and clear owner notifications reduce the risk of accidental downtime.</p>
+          <h4>Built so the data never leaves</h4>
+          <p class="muted">Analysis happens on the endpoint. Your files, documents and images are
+          never uploaded — only the redacted finding itself travels, and it is encrypted at rest
+          and in transit.</p>
+
+          <h4 style="margin-top:18px">Quiet enough to be read</h4>
+          <p class="muted">A tool that cries wolf gets ignored. Nothing reaches the queue on a single
+          weak signal, and your team can mark anything known-safe so it stops asking.</p>
+
+          <h4 style="margin-top:18px">Deployment</h4>
+          <p class="muted">Cloud, private instance, or fully on-premise for regulated environments.</p>
         </div>
       </div>
     </section>
@@ -243,8 +364,10 @@
       <div class="contact-grid" style="margin-top:18px;display:grid;grid-template-columns:1fr 380px;gap:18px">
         <div>
           <div class="contact-box">
-            <h4 style="margin:0 0 8px">Quick demo request</h4>
-            <p class="muted">Reach out for product demos, enterprise pricing, or partner inquiries.</p>
+            <h4 style="margin:0 0 8px">See it against your own data</h4>
+            <p class="muted">The fastest way to understand Triscaler Discovery is to point it at a
+            handful of real machines and see what comes back. Get in touch for a demo, pricing, or
+            partnership enquiries.</p>
 
             <p style="margin-top:12px"><strong>Email:</strong> <a href="mailto:hello@triscaler.com">hello@triscaler.com</a><br>
             <strong>Phone:</strong> <a href="tel:+919319741275">+91-9319741275</a></p>
@@ -255,11 +378,12 @@
           <div style="background:linear-gradient(180deg,#f7fbff,#ffffff);padding:18px;border-radius:12px;border:1px solid #eef4ff">
             <h4 style="margin-top:0">Why Triscaler</h4>
             <ul style="margin:12px 0;color:var(--muted)">
-              <li>Reduce mean time to contain (MTC) with auditable automation</li>
-              <li>Least-privilege integrations and safe rollback options</li>
-              <li>Lightweight deployment — SaaS-first with private/offline options</li>
+              <li>All three data states in one platform, not three products</li>
+              <li>Findings that name an owner, not just a file path</li>
+              <li>Analysis on the endpoint — your content never leaves it</li>
+              <li>Enterprise capability without enterprise overhead</li>
             </ul>
-            <p style="color:var(--muted);margin-top:12px;font-size:13px">We do not include personal names on the site. Contact details above are for product & partnership inquiries.</p>
+            <p style="color:var(--muted);margin-top:12px;font-size:13px">Contact details above are for product &amp; partnership enquiries.</p>
           </div>
         </div>
       </div>
@@ -270,69 +394,28 @@
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div style="display:flex;gap:12px;align-items:center">
           <div style="width:42px;height:42px;display:flex;align-items:center;justify-content:center">
-            <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
-              <defs>
-                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0" stop-color="#0b75ff"/>
-                  <stop offset="1" stop-color="#0a63d6"/>
-                </linearGradient>
-              </defs>
-              <!-- shield -->
-              <path d="M50 8 L82 22 V52 C82 72 65 88 50 96 C35 88 18 72 18 52 V22 Z" fill="url(#g1)"/>
-              <!-- eagle head -->
-              <path d="M34 44 C40 38 52 36 60 40 C57 36 52 34 48 34 C42 34 36 36 34 44 Z" fill="#fff"/>
-              <path d="M40 52 C48 46 58 46 66 50 C64 48 58 46 52 48 C46 50 42 52 40 52 Z" fill="#fff"/>
-              <path d="M60 56 L70 54 L66 60 Z" fill="#fff"/>
-            </svg>
+            <img src="logo.png" alt="Triscaler" width="32" height="32" style="display:block;object-fit:contain">
           </div>
           <div>
             <div style="font-weight:700">Triscaler</div>
-            <div style="font-size:13px;color:var(--muted)">Automated cloud breach containment</div>
+            <div style="font-size:13px;color:var(--muted)">Data discovery &amp; protection</div>
           </div>
         </div>
 
         <div style="color:var(--muted);font-size:13px">© <span id="yr"></span> Triscaler. All rights reserved.</div>
 
         <div class="socials">
-          <a href="https://www.linkedin.com/company/triscaler" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://www.facebook.com/triscaler" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.instagram.com/triscaler_sec/" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://x.com/triscaler" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/company/triscaler" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.82-2.05 3.75-2.05 4 0 4.4 2.6 4.4 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+          <a href="https://www.facebook.com/triscaler" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="https://www.instagram.com/triscaler_sec/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.17.4.36 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2a3.9 3.9 0 01-.9 1.4c-.4.4-.8.7-1.4.9-.4.17-1 .36-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42a3.9 3.9 0 01-1.4-.9 3.9 3.9 0 01-.9-1.4c-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.4a6.4 6.4 0 100 12.8 6.4 6.4 0 000-12.8zm0 10.6a4.2 4.2 0 110-8.4 4.2 4.2 0 010 8.4zm6.6-10.9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg></a>
+          <a href="https://x.com/triscaler" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5-6.2-5.8 6.2H1.5l7.5-8.6L1 3h6.7l4.6 5.7L17.5 3zm-1.1 16.1h1.8L7.7 4.8H5.8z"/></svg></a>
         </div>
       </div>
     </footer>
   </div>
 
   <script>
-    // Set year
     document.getElementById('yr').textContent = new Date().getFullYear();
-
-    function scrollToContact(){
-      document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
-    }
-
-    function fillExample(){
-      document.querySelector('input[name="email"]').value = 'info@yourcompany.com';
-      document.querySelector('textarea[name="message"]').value = 'Hi, we would like a demo of Triscaler. Please share available slots.';
-    }
-
-    function handleDemo(e){
-      e.preventDefault();
-      var form = document.getElementById('demoForm');
-      var formData = new FormData(form);
-      var email = formData.get('email') || '';
-      var org = formData.get('org') || '';
-      var message = formData.get('message') || '';
-      var subject = encodeURIComponent('Triscaler Demo Request from ' + (org || email));
-      var body = encodeURIComponent('Organization: ' + org + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-      // try to open mail client via mailto:
-      var mailto = 'mailto:hello@triscaler.com?subject=' + subject + '&body=' + body;
-      window.location.href = mailto;
-      // fallback: show a confirmation
-      setTimeout(function(){
-        alert('Your mail client should open. If not, please send an email to hello@triscaler.com');
-      }, 300);
-    }
   </script>
 </body>
 </html>
