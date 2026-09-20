@@ -1,11 +1,16 @@
 # triscaler-website
-Copyright (c) 2025 Triscaler. All rights reserved.
 
+Copyright (c) 2026 Triscaler. All rights reserved.
+
+This repository and everything in it — the page content, copy, layout,
+design, HTML, CSS, JavaScript and all artwork including the Triscaler logo,
+icons and preview images — is proprietary to Triscaler and is licensed
+strictly under the terms in [`LICENSE`](LICENSE).
+
+Nothing may be copied, reused, modified, mirrored or otherwise distributed,
+in whole or in part, without the prior written permission of Triscaler.
 Unauthorized copying, distribution, modification, or use of this software,
 in whole or in part, is strictly prohibited.
-
-This software and its accompanying documentation are proprietary to Triscaler.
-Access or use of this software signifies acceptance of these terms.
 
 ## Assets
 
