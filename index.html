@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Triscaler Discovery | Find your sensitive data before someone else does</title>
-  <meta name="description" content="Triscaler Discovery finds sensitive data across your endpoints: credentials, PII and payment data, at rest, in motion and in use. Know what you hold, where it lives, and who is responsible." />
+  <title>Triscaler | Endpoint, Browser &amp; AI-Tool Visibility</title>
+  <meta name="description" content="Discover sensitive data on macOS endpoints, warn on supported browser flows, and see metadata-only outbound TCP activity linked to recognized AI assistants and child processes." />
   <link rel="canonical" href="https://triscaler.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://triscaler.com/" />
-  <meta property="og:title" content="Triscaler Discovery" />
-  <meta property="og:description" content="Find sensitive data across your endpoints: credentials, PII and payment data, at rest, in motion and in use." />
+  <meta property="og:title" content="Triscaler | Endpoint, Browser &amp; AI-Tool Visibility" />
+  <meta property="og:description" content="Find sensitive data on endpoints, warn on supported browser flows, and add privacy-conscious context about recognized AI assistants and outbound connections." />
   <meta property="og:image" content="https://triscaler.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0b75ff" />
@@ -34,6 +34,8 @@
       --blue-600:#0a63d6;
       --blue-ink:#084da8;
       --blue-wash:#eef5ff;
+      --navy:#101a2d;
+      --navy-soft:#182944;
       /* A second hue so the page is not one blue repeated. Violet sits
          beside the brand blue without competing with the status colours,
          which stay reserved for severity and must never read as decoration. */
@@ -122,8 +124,8 @@
     .mobile-contact{display:none}
 
     /* Hero -------------------------------------------------------------- */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center;
-          padding:52px 0 58px;position:relative}
+    .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:54px;align-items:center;
+          padding:66px 0 72px;position:relative}
     /* A wash that bleeds past the container, so the fold has colour without
        tinting the text sitting on it. */
     .hero::before{content:"";position:absolute;left:50%;transform:translateX(-50%);
@@ -134,7 +136,7 @@
     .eyebrow{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.09em;
              text-transform:uppercase;color:var(--blue-ink);background:var(--blue-wash);
              padding:5px 10px;border-radius:999px;margin-bottom:16px}
-    .hero h1{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px;letter-spacing:-.03em}
+    .hero h1{font-size:clamp(36px,4.8vw,58px);margin:0 0 16px;letter-spacing:-.045em;line-height:1.04}
     .hero h1 em{font-style:normal;color:var(--blue)}
     .hero p{color:var(--muted);margin:0;font-size:16.5px;max-width:56ch}
     .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
@@ -149,32 +151,96 @@
     .secondary:hover{border-color:#cfd9e6;background:var(--surface)}
     .header-action-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 
-    /* Hero cards -------------------------------------------------------- */
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .card{background:#fff;padding:18px 18px 18px;border-radius:var(--radius);
-          border:1px solid var(--line);box-shadow:var(--shadow-sm);
-          position:relative;overflow:hidden;transition:box-shadow .15s ease,transform .15s ease}
-    .card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
-    .card h4{margin:0 0 6px;font-size:14px}
-    .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    /* Product illustration --------------------------------------------- */
+    .hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+    .hero-tag{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;
+              border:1px solid #dfe8f4;border-radius:999px;background:rgba(255,255,255,.82);
+              color:var(--muted);font-size:12px;font-weight:550}
+    .hero-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}
+    .product-preview{position:relative;overflow:hidden;background:var(--navy);color:#fff;
+                     border:1px solid #243653;border-radius:20px;padding:22px;
+                     box-shadow:0 24px 60px rgba(16,26,45,.2)}
+    .product-preview::before{content:"";position:absolute;width:270px;height:270px;right:-110px;top:-145px;
+                             border-radius:50%;background:rgba(36,117,255,.22);filter:blur(4px)}
+    .preview-head,.preview-record,.preview-meta,.sighting-head,.sighting{position:relative}
+    .preview-head{display:flex;align-items:center;gap:9px;color:#c5d2e5;
+                  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .preview-mark{width:8px;height:8px;border-radius:50%;background:#76d6bc;
+                  box-shadow:0 0 0 4px rgba(118,214,188,.12)}
+    .preview-label{margin-left:auto;color:#91a5c1;font-size:10px;letter-spacing:.04em}
+    .preview-record{margin-top:22px;padding:18px;border:1px solid rgba(202,220,245,.14);
+                    border-radius:14px;background:rgba(255,255,255,.055)}
+    .record-top{display:flex;align-items:center;gap:12px}
+    .record-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+                 background:rgba(60,133,255,.18);color:#9bc2ff;font-size:17px;font-weight:700}
+    .record-copy{display:grid;gap:3px}
+    .record-copy small,.preview-meta small{color:#92a5c0;font-size:10px;font-weight:650;
+                                           letter-spacing:.09em;text-transform:uppercase}
+    .record-copy strong{font-size:15px;letter-spacing:-.01em}
+    .risk-pill{margin-left:auto;align-self:flex-start;border-radius:999px;padding:5px 8px;
+               background:rgba(255,150,117,.13);color:#ffb39a;font-size:10px;font-weight:700}
+    .secret-field{display:flex;justify-content:space-between;align-items:center;gap:12px;
+                  margin-top:17px;padding:11px 12px;border-radius:9px;background:rgba(7,14,26,.42)}
+    .secret-field span{color:#9aabc1;font-size:11px}
+    .secret-field strong{color:#d9e7fa;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+                         font-size:12px;letter-spacing:.08em}
+    .preview-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+    .preview-meta div{display:grid;gap:4px}
+    .preview-meta strong{font-size:12px;font-weight:550;color:#e3ecf8}
+    .sighting-head{display:flex;justify-content:space-between;align-items:center;margin:20px 0 8px;
+                   color:#c5d2e5;font-size:11px;font-weight:650}
+    .sighting-head span:last-child{color:#91a5c1;font-weight:500}
+    .sighting{display:flex;align-items:center;gap:10px;padding:10px 0;
+              border-top:1px solid rgba(202,220,245,.12)}
+    .sighting-dot{width:7px;height:7px;border-radius:50%;background:#75cbbb;flex:none}
+    .sighting-copy{display:grid;gap:2px;min-width:0}
+    .sighting-copy strong{font-size:11px;font-weight:550;color:#e3ecf8}
+    .sighting-copy small{color:#91a5c1;font-size:10px}
+    .sighting-origin{margin-left:auto;color:#9bc2ff;font-size:10px;white-space:nowrap}
+    .preview-caption{margin-top:12px;text-align:right;color:#91a5c1;font-size:10px}
 
-    /* Hero panel: a product surface, not a code sample ------------------- */
-    .panel{background:#fff;border-radius:18px;padding:22px;border:1px solid var(--line);
-           box-shadow:var(--shadow-lg)}
-    .panel-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
-                 color:var(--faint);margin-bottom:14px}
-    .stat-row{display:flex;gap:22px;margin-bottom:16px}
-    .stat{display:flex;flex-direction:column}
-    .stat-value{font-size:24px;font-weight:700;letter-spacing:-.03em}
-    .stat-label{font-size:12px;color:var(--faint)}
-    .bar{display:flex;height:8px;border-radius:5px;overflow:hidden;gap:2px;margin-bottom:18px}
-    .panel-list{list-style:none;margin:0;padding:0;font-size:13.5px}
-    .panel-list li{display:flex;align-items:center;gap:9px;padding:8px 0;
-                   border-bottom:1px solid var(--line);color:var(--muted)}
-    .panel-list li:last-child{border-bottom:0}
-    .panel-list b{margin-left:auto;color:var(--ink);font-variant-numeric:tabular-nums}
-    .dot{width:8px;height:8px;border-radius:3px;flex:none}
-    .panel-foot{font-size:11px;color:var(--faint);margin-top:14px;text-align:right}
+    /* Product screenshots ---------------------------------------------- */
+    .screenshot-grid{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(270px,1fr);
+                     gap:18px;margin-top:30px;align-items:start}
+    .screenshot-card{min-width:0;margin:0;overflow:hidden;background:#fff;border:1px solid var(--line);
+                     border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+    .screenshot-link{display:block;background:#f4f7fb;border-bottom:1px solid var(--line)}
+    .screenshot-link:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+    .screenshot-link img{display:block;width:100%;height:auto}
+    .screenshot-caption{padding:17px 19px 19px}
+    .screenshot-caption small{display:block;margin-bottom:6px;color:var(--blue-ink);
+                              font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .screenshot-caption h4{margin:0 0 6px;font-size:16px}
+    .screenshot-caption p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .screenshot-note{margin-top:16px;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* AI, browser and assistant coverage ------------------------------- */
+    .ai-band{position:relative;border-top:0}
+    .ai-band::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+      width:100vw;height:100%;background:linear-gradient(180deg,#edf5ff 0%,#f7faff 100%);
+      border-top:1px solid #e2ecf8;border-bottom:1px solid #e2ecf8;z-index:-1}
+    .alert-showcase{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+                    gap:16px;align-items:stretch;margin-top:28px}
+    .alert-type-card{display:flex;flex-direction:column;min-width:0;padding:18px;
+                     border:1px solid #dfe8f4;border-radius:16px;
+                     background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm)}
+    .alert-type-card h4{margin:8px 0;font-size:16px}
+    .alert-type-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+    .alert-type-label{color:var(--blue-ink);font-size:10px;font-weight:700;
+                      letter-spacing:.08em;text-transform:uppercase}
+    .alert-notice-shot{margin:12px 0}
+    .alert-notice-shot a{display:flex;align-items:center;justify-content:center;aspect-ratio:2.35/1;
+                         overflow:hidden;border:1px solid var(--line);border-radius:10px;
+                         background:#f4f7fb}
+    .alert-notice-shot img{display:block;width:100%;height:100%;object-fit:contain}
+    .alert-notice-caption{margin-top:5px;color:var(--muted);font-size:10px}
+    .alert-destination{margin:10px 0!important;padding:9px 10px;border-radius:8px;
+                       background:#f4f7fb;color:var(--ink)!important;font-size:12px!important}
+    .alert-destination code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    .ai-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+    .ai-note{margin-top:18px;padding:14px 16px;border:1px solid #dfe8f4;border-radius:12px;
+             background:rgba(255,255,255,.82);color:var(--muted);font-size:13px;line-height:1.6}
+    .ai-note strong{color:var(--ink)}
 
     /* Sections ---------------------------------------------------------- */
     section{padding:72px 0;border-top:1px solid var(--line);
@@ -185,8 +251,8 @@
        one long column of white. The sections sit inside .container, so a
        plain background would stop at the content width and look like a
        floating box; this bleeds it to the viewport edges instead. */
-    #platform,#how{position:relative;border-top:0}
-    #platform::before,#how::before{content:"";position:absolute;top:0;
+    #platform,#screenshots,#how{position:relative;border-top:0}
+    #platform::before,#screenshots::before,#how::before{content:"";position:absolute;top:0;
       left:50%;transform:translateX(-50%);width:100vw;height:100%;
       background:var(--surface);border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);z-index:-1}
@@ -220,11 +286,19 @@
     /* Feature grid: equal cells, so headings line up across columns. Two
        free-flowing text columns drifted out of step as soon as one entry
        wrapped to a different number of lines. */
-    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
     .feature{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-             padding:20px;display:flex;flex-direction:column;gap:6px}
+             padding:21px;display:flex;flex-direction:column;gap:8px;
+             box-shadow:var(--shadow-sm);transition:transform .16s ease,box-shadow .16s ease}
+    .feature:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .feature-mark{width:34px;height:34px;display:grid;place-items:center;margin-bottom:6px;
+                  border-radius:10px;background:var(--blue-wash);color:var(--blue-ink);
+                  font-size:12px;font-weight:750;letter-spacing:-.03em}
     .feature h4{margin:0;font-size:15px}
-    .feature p{margin:0;font-size:13.5px;line-height:1.55}
+    .feature p{margin:0;font-size:13.5px;line-height:1.58}
+    .coverage-note{margin-top:20px;padding:14px 16px;border:1px solid #dfe8f4;border-radius:12px;
+                   background:#f7faff;color:var(--muted);font-size:13px;line-height:1.55}
+    .coverage-note strong{color:var(--ink)}
 
     /* How it works ------------------------------------------------------ */
     .how-list{margin:0;padding-left:0;list-style:none;counter-reset:step}
@@ -235,6 +309,17 @@
                          display:flex;align-items:center;justify-content:center;
                          font-weight:700;font-size:13px}
     .how-list strong{color:var(--ink)}
+    .trust-card{height:100%;padding:26px;border-radius:16px;background:var(--navy);color:#fff}
+    .trust-card h4{margin:0 0 10px;font-size:19px}
+    .trust-card p{margin:0;color:#c3d0e2;font-size:14px;line-height:1.65}
+    .trust-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
+    .trust-list li{display:flex;gap:10px;color:#dce7f5;font-size:12.5px;line-height:1.5}
+    .trust-list li::before{content:"";width:7px;height:7px;flex:none;margin-top:6px;
+                           border-radius:50%;background:#76d6bc}
+    .scope-note{margin-top:16px;padding:15px 17px;border-left:3px solid #fab219;
+                background:#fff9eb;color:#665a3c;border-radius:0 10px 10px 0;
+                font-size:12.5px;line-height:1.6}
+    .scope-note strong{color:#413716}
 
     /* Contact ----------------------------------------------------------- */
     .contact-box{background:linear-gradient(180deg,#f7fbff 0%,#ffffff 100%);border:1px solid #e5eefc;
@@ -276,13 +361,20 @@
     @media (max-width:940px){
       .hero{grid-template-columns:1fr;gap:38px;padding:48px 0}
       .grid-2{grid-template-columns:1fr;gap:32px}
+      .alert-showcase{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .ai-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .states{grid-template-columns:1fr}
+      .screenshot-grid{grid-template-columns:minmax(0,1.6fr) minmax(240px,1fr)}
       .feature-grid{grid-template-columns:repeat(2,1fr)}
       .contact-grid{grid-template-columns:1fr!important}
       nav a:not(.cta){padding:7px 9px;font-size:13px}
       nav{gap:0}
       nav .cta{margin-left:6px}
       section{padding:52px 0}
+    }
+    @media (max-width:700px){
+      .screenshot-grid{grid-template-columns:1fr}
+      .alert-showcase{grid-template-columns:1fr}
     }
     @media (max-width:560px){
       .container{padding:0 20px}
@@ -306,13 +398,11 @@
       .hero p{font-size:15px}
       .cta-row{flex-direction:column;align-items:stretch}
       .demo-btn,.secondary{display:flex;justify-content:center;width:auto;min-width:0}
-      .cards{grid-template-columns:1fr}
       .feature-grid{grid-template-columns:1fr}
-      .stat-row{gap:10px;justify-content:space-between}
-      .stat-value{font-size:20px}
-      .stat-label{font-size:11px}
-      .panel{padding:18px}
-      .panel-list li{font-size:12px}
+      .ai-grid{grid-template-columns:1fr}
+      .product-preview{padding:18px}
+      .hero-tags{gap:7px}
+      .hero-tag{font-size:11px}
       .section-title h3{font-size:clamp(24px,8vw,30px)}
       .contact-box{padding:18px}
       .site-footer-row{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center}
@@ -349,6 +439,8 @@
 
       <nav>
         <a href="#platform">Platform</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#ai">AI coverage</a>
         <a href="#solutions">What it finds</a>
         <a href="#how">How it works</a>
         <a class="secondary-header" href="#contact">Contact us</a>
@@ -361,187 +453,368 @@
 
     <!-- HERO -->
     <main class="hero" role="main">
-      <div>
-        <div class="eyebrow">Data Security Posture Management</div>
-        <h1>Discover. Classify. <em>Protect.</em></h1>
-        <p class="muted">Triscaler Discovery finds the sensitive data your organisation
-        did not know it had. Credentials, personal data, payment details, wherever they
-        sit, move or are used. Then it tells you whose they are and what to do about it.</p>
+      <div class="hero-copy">
+        <div class="eyebrow">Endpoint · Browser · AI-tool visibility</div>
+        <h1>Know where sensitive data lives.<br><em>See when AI tools connect out.</em></h1>
+        <p class="muted">On-device analysis finds exposed credentials. Supported browser checks
+        warn when secrets and selected financial identifiers appear; preflight can pause some
+        sends before submission. A best-effort macOS monitor links recognized AI assistants
+        to outbound TCP activity from identifiable child processes. It does not collect
+        prompts or inspect encrypted traffic.</p>
 
-        <div class="cta-row" style="margin-top:22px">
+        <div class="cta-row" style="margin-top:24px">
           <a class="demo-btn" href="#contact">Request a demo</a>
+          <a class="secondary" href="#platform">Explore capabilities</a>
         </div>
 
-        <div class="cards" style="margin-top:22px">
-          <div class="card">
-            <h4>Complete coverage</h4>
-            <p>Data at rest, in motion and in use. One platform, one view, one policy.</p>
-          </div>
-          <div class="card">
-            <h4>Precision over noise</h4>
-            <p>Multiple independent signals must agree before anything reaches an analyst.</p>
-          </div>
-          <div class="card">
-            <h4>Answers, not alerts</h4>
-            <p>Every finding names the data, the owner, the machine and the first sighting.</p>
-          </div>
+        <div class="hero-tags" aria-label="Platform highlights">
+          <span class="hero-tag">On-device AI + evidence</span>
+          <span class="hero-tag">Browser warnings · secrets + financial data</span>
+          <span class="hero-tag">AI tool → child process → TCP metadata</span>
         </div>
       </div>
 
-      <div class="panel" aria-hidden="true">
-        <div class="panel-title">Discovery summary</div>
-        <div class="stat-row">
-          <div class="stat"><span class="stat-value">1,284</span><span class="stat-label">sensitive items</span></div>
-          <div class="stat"><span class="stat-value">96</span><span class="stat-label">endpoints</span></div>
-          <div class="stat"><span class="stat-value">31</span><span class="stat-label">owners</span></div>
+      <div>
+        <div class="product-preview" aria-label="Illustrative view of endpoint discovery, browser warnings and AI-tool network context">
+          <div class="preview-head">
+            <span class="preview-mark" aria-hidden="true"></span>
+            <span>Endpoint signal overview</span>
+            <span class="preview-label">Illustrative</span>
+          </div>
+          <div class="preview-record">
+            <div class="record-top">
+              <span class="record-icon" aria-hidden="true">B</span>
+              <div class="record-copy">
+                <small>Browser check</small>
+                <strong>Sensitive data warning</strong>
+              </div>
+              <span class="risk-pill">Preflight flow</span>
+            </div>
+            <div class="secret-field">
+              <span>Selected checks</span>
+              <strong>Secrets · cards · financial IDs</strong>
+            </div>
+            <div class="preview-meta">
+              <div><small>AI assistants</small><strong>Claude · Cline · Gemini CLI</strong></div>
+              <div><small>Network signal</small><strong>Child TCP · metadata only</strong></div>
+            </div>
+          </div>
+          <div class="sighting-head"><span>Outbound context</span><span>Best effort</span></div>
+          <div class="sighting">
+            <span class="sighting-dot" aria-hidden="true"></span>
+            <div class="sighting-copy"><strong>Recognized AI process</strong><small>Known tool signature in process ancestry</small></div>
+            <span class="sighting-origin">Local</span>
+          </div>
+          <div class="sighting">
+            <span class="sighting-dot" aria-hidden="true"></span>
+            <div class="sighting-copy"><strong>Child connection</strong><small>Established TCP · public IP</small></div>
+            <span class="sighting-origin">Metadata</span>
+          </div>
         </div>
-        <div class="bar" role="img" aria-label="Severity mix">
-          <span style="flex:34;background:#d03b3b"></span>
-          <span style="flex:26;background:#ec835a"></span>
-          <span style="flex:22;background:#fab219"></span>
-          <span style="flex:18;background:#0ca30c"></span>
-        </div>
-        <ul class="panel-list">
-          <li><span class="dot" style="background:#d03b3b"></span> Credentials &amp; secrets <b>412</b></li>
-          <li><span class="dot" style="background:#ec835a"></span> Personal data (PII) <b>386</b></li>
-          <li><span class="dot" style="background:#fab219"></span> Payment card data <b>271</b></li>
-          <li><span class="dot" style="background:#0ca30c"></span> Financial &amp; health records <b>215</b></li>
-        </ul>
-        <div class="panel-foot">Illustrative view</div>
+        <div class="preview-caption">Illustrative signals · TLS traffic contents are not inspected</div>
       </div>
     </main>
 
-    <!-- The three states -->
+    <section id="screenshots">
+      <div class="section-title">
+        <div class="eyebrow">Product screens</div>
+        <h3>From an endpoint alert to the security console.</h3>
+        <p class="muted" style="max-width:72ch">A quick look at the local employee experience
+        and the fleet-wide analyst view.</p>
+      </div>
+
+      <div class="screenshot-grid">
+        <figure class="screenshot-card">
+          <a class="screenshot-link" href="screenshots/dashboard-overview.png"
+             target="_blank" rel="noopener" aria-label="Open the Analytics screenshot">
+            <img src="screenshots/dashboard-overview.png" alt="Triscaler security console Analytics overview with live severity, remediation, trend and detection-class panels."
+                 width="1459" height="768" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="screenshot-caption">
+            <small>Security team · Web console</small>
+            <h4>See exposure across endpoints</h4>
+            <p>Review severity, remediation progress and detection trends from one console.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <a class="screenshot-link" href="screenshots/endpoint-tray.png"
+             target="_blank" rel="noopener" aria-label="Open the endpoint tray screenshot">
+            <img src="screenshots/endpoint-tray.png" alt="Triscaler macOS tray showing action-needed status, total unique findings, security report, console and activity log."
+                 width="570" height="586" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="screenshot-caption">
+            <small>Employee · macOS endpoint</small>
+            <h4>See endpoint status at a glance</h4>
+            <p>Review action status and total findings, then open the local security report or activity history.</p>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="screenshot-note">Screens show the current product interface; counts and alert status may change as endpoint data updates.</p>
+    </section>
+
+    <section id="ai" class="ai-band">
+      <div class="section-title">
+        <div class="eyebrow">On-device AI · browser warnings · AI activity</div>
+        <h3>See what the local report alerts on.</h3>
+        <p class="muted" style="max-width:72ch">Review browser warnings, confirmed credential
+        findings and AI-tool network activity, with clear limits on what each alert means.</p>
+      </div>
+
+      <div class="alert-showcase">
+        <article class="alert-type-card">
+          <div class="alert-type-label">Browser warnings</div>
+          <h4>Secrets and selected financial data</h4>
+          <figure class="alert-notice-shot">
+            <a class="screenshot-link" href="screenshots/browser-alert.png"
+               target="_blank" rel="noopener" aria-label="Open the Google search warning example">
+              <img src="screenshots/browser-alert.png"
+                   alt="Triscaler warning that a credential-like value in a Google search query may already have been sent."
+                   width="838" height="476" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="alert-notice-caption">Google Search · masked in-page warning</figcaption>
+          </figure>
+          <p>Supported checks include credentials, payment cards, Aadhaar,
+            Indian tax PAN and IBAN with account context. UPI and IFSC need independent
+            companion evidence.</p>
+          <p>This search warning may appear after submission. Supported form
+            and chat preflight flows can pause some sends before submission. Raw query and
+            prompt text are not uploaded to Triscaler.</p>
+        </article>
+        <article class="alert-type-card">
+          <div class="alert-type-label">Endpoint · confirmed credential</div>
+          <h4>Evidence stays masked in the report</h4>
+          <figure class="alert-notice-shot">
+            <a href="screenshots/credential-confirmed-notification.png" target="_blank"
+               rel="noopener" aria-label="Open the credential confirmation notification">
+              <img src="screenshots/credential-confirmed-notification.png"
+                   alt="Triscaler notification saying a credential needs action and directing the user to review it from the menu bar."
+                   width="750" height="324" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="alert-notice-caption">Credential confirmation notification</figcaption>
+          </figure>
+          <p>Confirmed findings include masked evidence and remediation steps. A rotation
+          report is an attestation, so it does not close the finding.</p>
+        </article>
+        <article class="alert-type-card">
+          <div class="alert-type-label">AI tool · outbound alert</div>
+          <h4>GitHub Copilot</h4>
+          <p class="alert-destination">External connection to <code>1.1.1.1:443</code></p>
+          <figure class="alert-notice-shot">
+            <a href="screenshots/outbound-network-notification.png" target="_blank"
+               rel="noopener" aria-label="Open the outbound activity notification">
+              <img src="screenshots/outbound-network-notification.png"
+                   alt="Triscaler notification saying a recognized AI tool opened an external network connection and directing the user to review activity."
+                   width="820" height="340" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="alert-notice-caption">Outbound activity notification</figcaption>
+          </figure>
+          <p>Observed in the live monitor test with a synthetic Copilot signature.
+          Connection metadata only. TLS content is not inspected.</p>
+        </article>
+      </div>
+
+      <div class="ai-grid">
+        <div class="feature">
+          <span class="feature-mark" aria-hidden="true">01</span>
+          <h4>Local AI, grounded in evidence</h4>
+          <p class="muted">A local embedding model supplies an additional semantic signal when
+          context needs corroboration. Structural patterns and checksums remain primary evidence;
+          similarity alone cannot create a finding. Source files are not sent to the server for
+          model analysis.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-mark" aria-hidden="true">02</span>
+          <h4>Credential copies in AI-assistant workspaces</h4>
+          <p class="muted">Recognized Claude Code, Cline, Gemini CLI and Copilot transcripts
+          are checked locally for credentials matching an unchanged source file. A chat copy
+          alone is not a finding, and conversation text is not uploaded. This is not a
+          pre-send warning for desktop prompts.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-mark" aria-hidden="true">03</span>
+          <h4>Outbound TCP context from AI tools</h4>
+          <p class="muted">A best-effort macOS monitor links established outbound TCP
+          connections to public IPs with recognized AI processes and identifiable children.
+          It records metadata only. It does not collect prompts, domains or TLS contents,
+          and it does not block.</p>
+        </div>
+      </div>
+      <div class="ai-note">
+        <strong>Clear boundaries:</strong> desktop assistant prompts are not intercepted.
+        Transcript checks require a verified source-file match; browser checks cover supported
+        flows and selected identifiers, not broad PII or health-record discovery. Outbound
+        monitoring may miss short-lived or reparented processes and never inspects TLS content.
+      </div>
+    </section>
+
+    <!-- Endpoint coverage -->
     <section id="platform">
       <div class="section-title">
-        <h3>Sensitive data lives in three places. We cover all of them.</h3>
-        <p class="muted" style="max-width:70ch">Most tools look at one and leave you to guess about
-        the rest. Triscaler was built around all three from the start, and it is where the
-        name comes from.</p>
+        <div class="eyebrow">One endpoint view</div>
+        <h3>Follow credentials across the ways they are stored, used and shared.</h3>
+        <p class="muted" style="max-width:72ch">Triscaler combines on-device discovery with
+        supported browser checks and carefully scoped activity signals. Each channel has
+        explicit coverage boundaries.</p>
       </div>
 
       <div class="states">
         <div class="state">
           <div class="state-tag">At rest</div>
-          <h4>Where it is stored</h4>
-          <p class="muted">Laptops and workstations, local databases, configuration files, notes,
-          exports, archives, and the screenshots people take of them. The places data quietly
-          accumulates and nobody reviews.</p>
+          <h4>Find what files conceal</h4>
+          <p class="muted">Scan files, local database values, source history, removable drives,
+          archives and office documents. OCR helps inspect screenshots and image-only PDFs.</p>
         </div>
         <div class="state">
           <div class="state-tag">In motion</div>
-          <h4>Where it is going</h4>
-          <p class="muted">Clipboard, browser, uploads, removable media, messaging and mail. The
-          moment sensitive data leaves a controlled place for one you do not control.</p>
+          <h4>Warn in supported browser flows</h4>
+          <p class="muted">Detect sensitive pastes and check supported form or chat submissions
+          before they are sent. Clipboard monitoring is optional; browser permissions and
+          supported flows determine coverage.</p>
         </div>
         <div class="state">
           <div class="state-tag">In use</div>
-          <h4>Who is touching it</h4>
-          <p class="muted">Which applications and processes are reading sensitive files, when, and
-          on whose machine, so exposure is caught as it happens rather than at the next audit.</p>
+          <h4>Add context about activity</h4>
+          <p class="muted">See when a process references a watched credential path and recognize
+          some AI-tool network connections. Outbound monitoring records connection metadata,
+          not encrypted traffic contents.</p>
         </div>
       </div>
     </section>
 
-    <!-- What it finds -->
+    <!-- Detection and operations -->
     <section id="solutions">
       <div class="section-title">
-        <h3>What it finds</h3>
-        <p class="muted" style="max-width:70ch">Four categories, one queue, ranked so the top of the
-        list is the thing worth doing first.</p>
+        <div class="eyebrow">Built for security teams</div>
+        <h3>From a strong signal to an investigation you can act on.</h3>
+        <p class="muted" style="max-width:72ch">Detection is only useful when teams can trust
+        the evidence, tune the rules and understand how an exposure connects across their fleet.</p>
       </div>
 
       <div class="feature-grid">
         <div class="feature">
-          <h4>Credentials and secrets</h4>
-          <p class="muted">Passwords, API keys, access tokens, private keys and connection strings
-          left in files, notes, scripts and screenshots. The quiet majority of real breaches start
-          here.</p>
+          <span class="feature-mark" aria-hidden="true">01</span>
+          <h4>Credential-focused detection</h4>
+          <p class="muted">Find passwords, cloud and developer tokens, private keys, database
+          connection strings and other actionable credentials in supported content.</p>
         </div>
         <div class="feature">
-          <h4>Personal data (PII)</h4>
-          <p class="muted">Names, contact details, government identifiers and employee records,
-          wherever they have been copied out of the systems meant to hold them.</p>
+          <span class="feature-mark" aria-hidden="true">02</span>
+          <h4>Evidence, not just keywords</h4>
+          <p class="muted">Self-verifying formats and checksums provide strong evidence;
+          contextual matches need corroboration and an account where required. Placeholders
+          and known test values are filtered out.</p>
         </div>
         <div class="feature">
-          <h4>Payment and financial data</h4>
-          <p class="muted">Card numbers, bank details and financial records, validated so a
-          reference number is not mistaken for a real one.</p>
+          <span class="feature-mark" aria-hidden="true">03</span>
+          <h4>Useful source detail</h4>
+          <p class="muted">Show the attributed account, endpoint, file path, line number and
+          detection rationale, with masked evidence in the normal investigation view.</p>
         </div>
         <div class="feature">
-          <h4>Regulated and confidential records</h4>
-          <p class="muted">Health information, contracts and intellectual property, classified by
-          the policies you set rather than a fixed list we decided for you.</p>
+          <span class="feature-mark" aria-hidden="true">04</span>
+          <h4>One credential, connected sightings</h4>
+          <p class="muted">Correlate the same fingerprint and account across files and hosts.
+          See where it was first observed, who uses the device and where else it appeared.</p>
         </div>
         <div class="feature">
-          <h4>Who is responsible</h4>
-          <p class="muted">Every finding names the account it belongs to and the machine it sits on.
-          When the same secret appears across several machines, Triscaler shows where it appeared
-          first, so you are talking to the right person.</p>
+          <span class="feature-mark" aria-hidden="true">05</span>
+          <h4>Rules managed centrally</h4>
+          <p class="muted">Analysts edit and validate endpoint rule files in the server console.
+          Published bundles are versioned, signed, delivered to enrolled agents and hot-reloaded.</p>
         </div>
         <div class="feature">
-          <h4>Risk you can act on</h4>
-          <p class="muted">Findings are scored and ranked, so the queue starts with what matters
-          rather than everything that matched a pattern.</p>
+          <span class="feature-mark" aria-hidden="true">06</span>
+          <h4>Policy-controlled browser warnings</h4>
+          <p class="muted">Signed response policies control supported browser warning actions.
+          People can review a warning and choose whether to continue a supported submission.</p>
         </div>
         <div class="feature">
-          <h4>Evidence for auditors</h4>
-          <p class="muted">A durable record of what was found, who looked at it, what they decided
-          and when. The trail regulators and customers ask for.</p>
+          <span class="feature-mark" aria-hidden="true">07</span>
+          <h4>Fleet-aware alerts</h4>
+          <p class="muted">A credential shared across machines becomes one correlated incident.
+          Notifications go only to affected endpoints, with generic lock-screen-safe wording.</p>
         </div>
         <div class="feature">
-          <h4>Supports obligations under</h4>
-          <p class="muted">GDPR &middot; India DPDP Act &middot; PCI DSS &middot; HIPAA &middot;
-          ISO 27001 &middot; SOC 2</p>
+          <span class="feature-mark" aria-hidden="true">08</span>
+          <h4>Auditable investigation</h4>
+          <p class="muted">Review activity, triage findings, manage suppressions and record
+          analyst actions. Revealing an encrypted value is an explicit, audited action.</p>
         </div>
+        <div class="feature">
+          <span class="feature-mark" aria-hidden="true">09</span>
+          <h4>Scan health and local control</h4>
+          <p class="muted">Track scan progress and agent health in the console, while the
+          companion tray provides a private, local security report and endpoint notifications.</p>
+        </div>
+      </div>
+
+      <div class="coverage-note">
+        <strong>Additional browser classifiers:</strong> payment cards, Aadhaar, Indian tax PAN
+        and global IBAN checks use validation and context. UPI and IFSC identifiers do not alert
+        on their own; they require independent companion evidence.
       </div>
     </section>
 
-    <!-- How it works -->
+    <!-- Trust and workflow -->
     <section id="how">
       <div class="section-title">
-        <h3>How it works</h3>
+        <div class="eyebrow">Designed for accountable response</div>
+        <h3>Know what was found, why it matters and what happened next.</h3>
       </div>
 
-      <div style="margin-top:18px" class="grid-2">
+      <div style="margin-top:22px" class="grid-2">
         <div>
           <ol class="how-list">
-            <li><strong>Deploy:</strong> A lightweight agent installs in minutes, with no administrator rights and no change to how people work.</li>
-            <li><strong>Discover:</strong> Continuous discovery across all three data states, not a quarterly scan that is stale by the time it finishes.</li>
-            <li><strong>Classify:</strong> Findings are categorised and scored, with several independent signals required to agree before anything is raised.</li>
-            <li><strong>Attribute:</strong> Each finding is tied to an owner, a machine and a first sighting, so it can be acted on rather than investigated.</li>
-            <li><strong>Respond:</strong> Alert, raise a ticket, or quarantine, with the whole decision trail preserved.</li>
+            <li><strong>Discover locally:</strong> The macOS agent checks supported sources on
+            the endpoint and paces background work to reduce disruption.</li>
+            <li><strong>Validate the evidence:</strong> Structural checks, checksums, identity
+            context and corroborating signals help distinguish credentials from ordinary text.</li>
+            <li><strong>Connect the sightings:</strong> Fingerprints and account attribution link
+            the same credential across files and machines, with an origin and timeline.</li>
+            <li><strong>Deliver controlled updates:</strong> Enrolled agents verify signed,
+            versioned rule and policy bundles delivered by the server, then hot-reload them.</li>
+            <li><strong>Investigate and act:</strong> Analysts review evidence and audit history.
+            An endpoint rotation report is recorded as an attestation, not automatic proof of revocation.</li>
           </ol>
         </div>
-        <div>
-          <h4>Built so the data never leaves</h4>
-          <p class="muted">Analysis happens on the endpoint. Your files, documents and images are
-          never uploaded. Only the redacted finding itself travels, and it is encrypted at rest
-          and in transit.</p>
-
-          <h4 style="margin-top:18px">Quiet enough to be read</h4>
-          <p class="muted">A tool that cries wolf gets ignored. Nothing reaches the queue on a single
-          weak signal, and your team can mark anything known-safe so it stops asking.</p>
-
-          <h4 style="margin-top:18px">Deployment</h4>
-          <p class="muted">Cloud, private instance, or fully on-premise for regulated environments.</p>
+        <div class="trust-card">
+          <h4>Inspect locally. Share deliberately.</h4>
+          <p>Source files and full browser prompts stay on the endpoint. When a detector finds
+          a credential, a finding record can include the matched value so an authorized team
+          can investigate and rotate it.</p>
+          <ul class="trust-list">
+            <li>Local findings are encrypted in the agent database.</li>
+            <li>Matched values are encrypted at rest on the server; revealing one is audited.</li>
+            <li>Agent requests use per-device Ed25519 signatures. Remote deployments should use HTTPS/TLS.</li>
+            <li>Browser prompt text is not retained or uploaded; outbound AI monitoring stores connection metadata only.</li>
+          </ul>
         </div>
+      </div>
+
+      <div class="scope-note">
+        <strong>Current scope:</strong> macOS endpoint agent and a central web console. Browser
+        coverage depends on extension permissions and supported flows; outbound AI-tool monitoring
+        is best-effort metadata, not content inspection. Triscaler does not currently block
+        network traffic or quarantine files, and broad health-record/PII discovery and Windows
+        endpoint support are not presented as shipped features.
       </div>
     </section>
 
     <!-- Contact -->
     <section id="contact">
       <div class="section-title">
-        <h3>Contact</h3>
+        <div class="eyebrow">Start a conversation</div>
+        <h3>See how Triscaler fits your environment.</h3>
       </div>
 
       <div class="contact-grid" style="margin-top:18px;display:grid;grid-template-columns:1.22fr 1.18fr;gap:18px;align-items:stretch">
         <div style="display:flex">
           <div class="contact-box" style="width:100%;max-width:100%">
-            <h4>See it against your own data</h4>
-            <p class="muted">The fastest way to understand Triscaler Discovery is to point it at a
-            handful of real machines and see what comes back. Get in touch for a demo, pricing, or
-            partnership enquiries.</p>
+            <h4>Explore a guided demo</h4>
+            <p class="muted">Talk with us about your endpoint environment, the credential risks
+            you want to address and the coverage you need. We can walk through discovery,
+            signed rule management, investigation and current platform boundaries.</p>
 
             <div class="contact-meta">
               <div><strong>Email:</strong> <a href="mailto:hello@triscaler.com">hello@triscaler.com</a></div>
@@ -552,14 +825,14 @@
 
         <div style="display:flex">
           <div class="contact-side" style="width:100%;max-width:100%">
-            <h4>Why Triscaler</h4>
+            <h4>What we can show</h4>
             <ul>
-              <li>All three data states in one platform, not three products</li>
-              <li>Findings that name an owner, not just a file path</li>
-              <li>Analysis on the endpoint, so your content never leaves it</li>
-              <li>Enterprise capability without enterprise overhead</li>
+              <li>Endpoint discovery across files, databases, source history and supported documents</li>
+              <li>Credential correlation across locations, accounts and machines</li>
+              <li>Analyst-managed rules delivered as signed, versioned bundles</li>
+              <li>Clear privacy, browser-permission and response boundaries</li>
             </ul>
-            <p>Contact details above are for product &amp; partnership enquiries.</p>
+            <p>Contact us for a product demo, pilot discussion or partnership enquiry.</p>
           </div>
         </div>
       </div>
@@ -571,7 +844,7 @@
         <div class="footer-brand">
           <div class="footer-brand-copy">
             <strong>Triscaler</strong>
-            <span>Data discovery &amp; protection</span>
+            <span>Endpoint credential discovery &amp; response</span>
           </div>
         </div>
 
