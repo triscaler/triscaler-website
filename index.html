@@ -152,11 +152,11 @@
     .header-action-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 
     /* Product illustration --------------------------------------------- */
-    .hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
-    .hero-tag{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;
-              border:1px solid #dfe8f4;border-radius:999px;background:rgba(255,255,255,.82);
-              color:var(--muted);font-size:12px;font-weight:550}
-    .hero-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}
+    .hero-tags{display:grid;gap:6px;margin:22px 0 0;padding:0;list-style:none}
+    .hero-tag{display:flex;align-items:flex-start;gap:9px;width:fit-content;max-width:100%;
+              padding:3px 0;color:var(--muted);font-size:13px;font-weight:550;line-height:1.5}
+    .hero-tag::before{content:"";flex:0 0 7px;width:7px;height:7px;margin-top:7px;
+                      border-radius:50%;background:var(--blue)}
     .product-preview{position:relative;overflow:hidden;background:var(--navy);color:#fff;
                      border:1px solid #243653;border-radius:20px;padding:22px;
                      box-shadow:0 24px 60px rgba(16,26,45,.2)}
@@ -467,11 +467,11 @@
           <a class="secondary" href="#platform">Explore capabilities</a>
         </div>
 
-        <div class="hero-tags" aria-label="Platform highlights">
-          <span class="hero-tag">On-device AI + evidence</span>
-          <span class="hero-tag">Browser warnings · secrets + financial data</span>
-          <span class="hero-tag">AI tool → child process → TCP metadata</span>
-        </div>
+        <ul class="hero-tags" aria-label="Platform highlights">
+          <li class="hero-tag">On-device AI + evidence</li>
+          <li class="hero-tag">Browser warnings · secrets + financial data</li>
+          <li class="hero-tag">AI tool → child process → TCP metadata</li>
+        </ul>
       </div>
 
       <div>
@@ -844,7 +844,7 @@
         <div class="footer-brand">
           <div class="footer-brand-copy">
             <strong>Triscaler</strong>
-            <span>Endpoint credential discovery &amp; response</span>
+            <span>Endpoint Secrets Discovery &amp; Response</span>
           </div>
         </div>
 
