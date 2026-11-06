@@ -125,7 +125,7 @@
 
     /* Hero -------------------------------------------------------------- */
     .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:54px;align-items:center;
-          padding:66px 0 72px;position:relative}
+          padding:36px 0 72px;position:relative}
     /* A wash that bleeds past the container, so the fold has colour without
        tinting the text sitting on it. */
     .hero::before{content:"";position:absolute;left:50%;transform:translateX(-50%);
@@ -139,16 +139,9 @@
     .hero h1{font-size:clamp(36px,4.8vw,58px);margin:0 0 16px;letter-spacing:-.045em;line-height:1.04}
     .hero h1 em{font-style:normal;color:var(--blue)}
     .hero p{color:var(--muted);margin:0;font-size:16.5px;max-width:56ch}
-    .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-    .demo-btn{background:linear-gradient(180deg,#0f7cff 0%,#0d6fe8 100%);color:#fff;padding:10px 16px;border-radius:8px;border:0;
-              font-weight:500;font-size:14px;cursor:pointer;text-decoration:none;
-              display:inline-flex;align-items:center;justify-content:center;min-height:40px;
-              transition:background .15s ease,transform .15s ease;box-shadow:0 2px 8px rgba(11,117,255,.12)}
-    .demo-btn:hover{background:linear-gradient(180deg,#0d73ee 0%,#0b68d3 100%);transform:translateY(-1px)}
-    .secondary{background:#fff;border:1px solid var(--line);padding:9px 16px;border-radius:8px;
-               color:var(--ink);font-weight:500;font-size:14px;cursor:pointer;text-decoration:none;
-               display:inline-flex;align-items:center;justify-content:center;min-height:40px}
-    .secondary:hover{border-color:#cfd9e6;background:var(--surface)}
+    .cta-note{margin:0;color:var(--muted);font-size:14px}
+    .cta-note a{color:var(--blue-600);font-weight:600;text-decoration:none}
+    .cta-note a:hover{text-decoration:underline}
     .header-action-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 
     /* Product illustration --------------------------------------------- */
@@ -359,7 +352,7 @@
 
     /* Responsive -------------------------------------------------------- */
     @media (max-width:940px){
-      .hero{grid-template-columns:1fr;gap:38px;padding:48px 0}
+      .hero{grid-template-columns:1fr;gap:38px;padding:32px 0}
       .grid-2{grid-template-columns:1fr;gap:32px}
       .alert-showcase{grid-template-columns:repeat(2,minmax(0,1fr))}
       .ai-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -392,12 +385,10 @@
                       background:#fff;border:1px solid var(--line);color:var(--ink);
                       text-decoration:none;font-size:12px;font-weight:500;padding:7px 10px;
                       border-radius:8px;min-height:34px;box-shadow:0 1px 3px rgba(13,21,38,.05)}
-      .hero{padding:36px 0 28px;gap:28px}
+      .hero{padding:28px 0;gap:28px}
       .eyebrow{font-size:11px;padding:5px 9px}
       .hero h1{font-size:clamp(30px,11vw,40px)}
       .hero p{font-size:15px}
-      .cta-row{flex-direction:column;align-items:stretch}
-      .demo-btn,.secondary{display:flex;justify-content:center;width:auto;min-width:0}
       .feature-grid{grid-template-columns:1fr}
       .ai-grid{grid-template-columns:1fr}
       .product-preview{padding:18px}
@@ -417,7 +408,6 @@
     @media (max-width:360px){
       .wordmark{font-size:16px}
       .cta{padding:10px 14px}
-      .demo-btn,.secondary{padding-left:16px;padding-right:16px}
       .panel-list li{gap:7px}
     }
 
@@ -462,13 +452,10 @@
         to outbound TCP activity from identifiable child processes. It does not collect
         prompts or inspect encrypted traffic.</p>
 
-        <div class="cta-row" style="margin-top:24px">
-          <a class="demo-btn" href="#contact">Request a demo</a>
-          <a class="secondary" href="#platform">Explore capabilities</a>
-        </div>
+        <p class="cta-note" style="margin-top:24px">Interested in a demo? <a href="#contact">Contact us</a>.</p>
 
         <ul class="hero-tags" aria-label="Platform highlights">
-          <li class="hero-tag">On-device AI + evidence</li>
+          <li class="hero-tag">Local ONNX scans · no paid AI API</li>
           <li class="hero-tag">Browser warnings · secrets + financial data</li>
           <li class="hero-tag">AI tool → child process → TCP metadata</li>
         </ul>
@@ -617,11 +604,11 @@
       <div class="ai-grid">
         <div class="feature">
           <span class="feature-mark" aria-hidden="true">01</span>
-          <h4>Local AI, grounded in evidence</h4>
-          <p class="muted">A local embedding model supplies an additional semantic signal when
-          context needs corroboration. Structural patterns and checksums remain primary evidence;
-          similarity alone cannot create a finding. Source files are not sent to the server for
-          model analysis.</p>
+          <h4>Local ONNX embeddings, grounded in evidence</h4>
+          <p class="muted">Workstation scans use a local ONNX embedding model for an additional
+          semantic signal, without a paid AI API or per-scan model charge. Structural patterns
+          and checksums remain primary evidence; similarity alone cannot create a finding.
+          Source files are not sent to the server for this model analysis.</p>
         </div>
         <div class="feature">
           <span class="feature-mark" aria-hidden="true">02</span>
