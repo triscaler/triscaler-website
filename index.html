@@ -244,8 +244,8 @@
        one long column of white. The sections sit inside .container, so a
        plain background would stop at the content width and look like a
        floating box; this bleeds it to the viewport edges instead. */
-    #platform,#screenshots,#how{position:relative;border-top:0}
-    #platform::before,#screenshots::before,#how::before{content:"";position:absolute;top:0;
+    #platform,#screenshots,#how,#performance{position:relative;border-top:0}
+    #platform::before,#screenshots::before,#how::before,#performance::before{content:"";position:absolute;top:0;
       left:50%;transform:translateX(-50%);width:100vw;height:100%;
       background:var(--surface);border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);z-index:-1}
@@ -275,6 +275,25 @@
                text-transform:uppercase;color:var(--blue-ink);margin-bottom:10px}
     .state h4{font-size:17px;margin:0 0 8px}
     .state p{margin:0;font-size:14px}
+
+    /* Performance figures are observations, not promises. Keep the timing
+       context beside each number so a helper microbenchmark is not mistaken
+       for end-to-end scan latency. */
+    .performance-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:30px}
+    .performance-card{padding:22px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+                      box-shadow:var(--shadow-sm)}
+    .performance-kicker{color:var(--blue-ink);font-size:11px;font-weight:700;letter-spacing:.07em;
+                        text-transform:uppercase}
+    .performance-value{margin:12px 0 8px;color:var(--ink);font-size:32px;font-weight:750;
+                       line-height:1.15;letter-spacing:-.04em}
+    .performance-value small{color:var(--muted);font-size:13px;font-weight:600;letter-spacing:0}
+    .performance-card h4{margin:0 0 8px;font-size:15px}
+    .performance-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .performance-note{margin-top:16px;padding:15px 17px;border:1px solid #dfe8f4;border-radius:12px;
+                      background:rgba(255,255,255,.82);color:var(--muted);font-size:13px;line-height:1.6}
+    .performance-note strong{color:var(--ink)}
+    .performance-note ul{margin:8px 0 0;padding-left:19px}
+    .performance-note li+li{margin-top:5px}
 
     /* Feature grid: equal cells, so headings line up across columns. Two
        free-flowing text columns drifted out of step as soon as one entry
@@ -357,6 +376,7 @@
       .alert-showcase{grid-template-columns:repeat(2,minmax(0,1fr))}
       .ai-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .states{grid-template-columns:1fr}
+      .performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .screenshot-grid{grid-template-columns:minmax(0,1.6fr) minmax(240px,1fr)}
       .feature-grid{grid-template-columns:repeat(2,1fr)}
       .contact-grid{grid-template-columns:1fr!important}
@@ -368,6 +388,7 @@
     @media (max-width:700px){
       .screenshot-grid{grid-template-columns:1fr}
       .alert-showcase{grid-template-columns:1fr}
+      .performance-grid{grid-template-columns:1fr}
     }
     @media (max-width:560px){
       .container{padding:0 20px}
@@ -429,6 +450,7 @@
 
       <nav>
         <a href="#platform">Platform</a>
+        <a href="#performance">Performance</a>
         <a href="#screenshots">Screenshots</a>
         <a href="#ai">AI coverage</a>
         <a href="#solutions">What it finds</a>
@@ -666,6 +688,45 @@
           some AI-tool network connections. Outbound monitoring records connection metadata,
           not encrypted traffic contents.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- Performance -->
+    <section id="performance">
+      <div class="section-title">
+        <div class="eyebrow">Measured performance</div>
+        <h3>Real scan times, with the workload shown.</h3>
+        <p class="muted" style="max-width:72ch">These are observations from one 12-core Apple M4 Pro
+        development Mac, not service-level targets. Results vary with files, permissions, power
+        settings and system load.</p>
+      </div>
+
+      <div class="performance-grid">
+        <article class="performance-card">
+          <div class="performance-kicker">Initial file baseline</div>
+          <div class="performance-value">65 <small>seconds</small></div>
+          <p>3,765 files checked while the user was active, using the real agent configuration.</p>
+        </article>
+        <article class="performance-card">
+          <div class="performance-kicker">Full background pass</div>
+          <div class="performance-value">~5 <small>minutes total</small></div>
+          <p>The measured run included 1,167 images and PDFs plus 1,761 Git-history versions.</p>
+        </article>
+        <article class="performance-card">
+          <div class="performance-kicker">Screenshot OCR helper</div>
+          <div class="performance-value">0.19 <small>seconds warm median</small></div>
+          <p>Six runs on an 838 × 476 screenshot. The first measured call took 30.47 seconds.
+          Helper time only, not the full detection pipeline.</p>
+        </article>
+      </div>
+
+      <div class="performance-note">
+        <strong>How to read these numbers:</strong>
+        <ul>
+          <li>The full-pass figure combines several workloads. It is not a per-screenshot or per-file time.</li>
+          <li>New file and supported browser events are prioritized over baseline work. We do not yet have consistent end-to-end latency figures for every scan type.</li>
+          <li>PDFs, archives, databases, removable drives and outbound activity have different workloads. Per-type timings need separate, repeatable benchmarks.</li>
+        </ul>
       </div>
     </section>
 
