@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Local AI embedding adds context to credential checks</title>
+  <desc id="desc">A bright, layered diagram shows supported text entering a local AI embedding model, which adds a contextual signal alongside independent evidence before a finding is stored on the Mac. Similarity alone cannot create a finding and scanning does not call a cloud AI service.</desc>
+  <defs>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f0f7ff"/><stop offset="1" stop-color="#eff9f5"/></linearGradient>
+    <linearGradient id="model" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c9ecdf"/><stop offset="1" stop-color="#9edcc9"/></linearGradient>
+    <filter id="lift" x="-20%" y="-25%" width="145%" height="165%"><feDropShadow dx="0" dy="10" stdDeviation="11" flood-color="#1b4671" flood-opacity=".12"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#69809d"/></marker>
+  </defs>
+  <rect x="12" y="12" width="936" height="536" rx="24" fill="url(#wash)" stroke="#dce8f4"/>
+  <g font-family="Arial,sans-serif">
+    <text x="44" y="56" fill="#075ebd" font-size="13" font-weight="700" letter-spacing="1.7">AI EMBEDDING · ON THE MAC</text>
+    <text x="44" y="91" fill="#102039" font-size="25" font-weight="700">AI adds context. Evidence decides.</text>
+
+    <g filter="url(#lift)">
+      <polygon points="50,218 69,202 224,202 205,218" fill="#c8dcf7"/>
+      <polygon points="205,218 224,202 224,365 205,381" fill="#dce9f8"/>
+      <rect x="50" y="218" width="155" height="163" rx="8" fill="#fff" stroke="#c6d9f0"/>
+      <rect x="50" y="218" width="155" height="7" rx="3" fill="#4c91e6"/>
+      <text x="69" y="257" fill="#075ebd" font-size="11" font-weight="700" letter-spacing="1">SUPPORTED TEXT</text>
+      <rect x="69" y="273" width="116" height="73" rx="6" fill="#f5f8fc" stroke="#e1e8f0"/>
+      <text x="80" y="298" fill="#58677d" font-size="11">account: service</text>
+      <text x="80" y="321" fill="#58677d" font-size="11">password: •••••••</text>
+      <text x="69" y="364" fill="#738197" font-size="10">content stays local</text>
+
+      <polygon points="277,199 296,183 496,183 477,199" fill="#a9d8ca"/>
+      <polygon points="477,199 496,183 496,365 477,381" fill="#c2e8dc"/>
+      <rect x="277" y="199" width="200" height="182" rx="8" fill="#fff" stroke="#bfe2d7"/>
+      <rect x="277" y="199" width="200" height="7" rx="3" fill="#26a487"/>
+      <text x="298" y="239" fill="#087763" font-size="11" font-weight="700" letter-spacing="1">LOCAL MODEL</text>
+      <text x="298" y="265" fill="#102039" font-size="17" font-weight="700">Embedding</text>
+      <g fill="#53b69d">
+        <rect x="299" y="290" width="22" height="35" rx="4"/><rect x="328" y="278" width="22" height="47" rx="4"/>
+        <rect x="357" y="298" width="22" height="27" rx="4"/><rect x="386" y="282" width="22" height="43" rx="4"/>
+        <rect x="415" y="292" width="22" height="33" rx="4"/><rect x="444" y="274" width="14" height="51" rx="4"/>
+      </g>
+      <text x="298" y="350" fill="#58677d" font-size="11">adds a supporting signal</text>
+      <text x="298" y="367" fill="#087763" font-size="10" font-weight="700">NO CLOUD AI CALL</text>
+
+      <polygon points="551,218 570,202 742,202 723,218" fill="#d4d2f3"/>
+      <polygon points="723,218 742,202 742,365 723,381" fill="#e6e5f7"/>
+      <rect x="551" y="218" width="172" height="163" rx="8" fill="#fff" stroke="#d6d3ef"/>
+      <rect x="551" y="218" width="172" height="7" rx="3" fill="#7773d8"/>
+      <text x="572" y="257" fill="#514da9" font-size="11" font-weight="700" letter-spacing="1">OTHER EVIDENCE</text>
+      <circle cx="578" cy="288" r="5" fill="#0b75ff"/><text x="592" y="292" fill="#374356" font-size="12">Credential format</text>
+      <circle cx="578" cy="318" r="5" fill="#18a184"/><text x="592" y="322" fill="#374356" font-size="12">Account context</text>
+      <circle cx="578" cy="348" r="5" fill="#d49a2d"/><text x="592" y="352" fill="#374356" font-size="12">Independent checks</text>
+
+      <polygon points="791,218 810,202 912,202 893,218" fill="#b9dfd4"/>
+      <polygon points="893,218 912,202 912,365 893,381" fill="#d4ebe4"/>
+      <rect x="791" y="218" width="102" height="163" rx="8" fill="#fff" stroke="#c5e1d8"/>
+      <rect x="791" y="218" width="102" height="7" rx="3" fill="#249b7e"/>
+      <circle cx="842" cy="274" r="21" fill="#eaf7f2" stroke="#71c3a9"/>
+      <path d="M832 274l7 7 14-16" fill="none" stroke="#087763" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="842" y="318" text-anchor="middle" fill="#102039" font-size="13" font-weight="700">Finding</text>
+      <text x="842" y="342" text-anchor="middle" fill="#58677d" font-size="10">local record</text>
+      <text x="842" y="359" text-anchor="middle" fill="#58677d" font-size="10">if evidence agrees</text>
+    </g>
+
+    <line x1="231" y1="299" x2="266" y2="299" stroke="#69809d" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="503" y1="299" x2="540" y2="299" stroke="#69809d" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="749" y1="299" x2="780" y2="299" stroke="#69809d" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="44" y="434" width="872" height="75" rx="10" fill="#fff" fill-opacity=".88" stroke="#dfe7ef"/>
+    <circle cx="70" cy="471" r="11" fill="#edf5ff" stroke="#a8c9f0"/>
+    <path d="M65 471h10M70 466v10" stroke="#176bca" stroke-width="1.5"/>
+    <text x="94" y="464" fill="#102039" font-size="14" font-weight="700">The model cannot create a finding by itself.</text>
+    <text x="94" y="486" fill="#58677d" font-size="12">It adds context to independent evidence. The decision stays with Triscaler's detection rules.</text>
+  </g>
+</svg>

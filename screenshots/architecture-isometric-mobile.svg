@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="850" viewBox="0 0 390 850" role="img" aria-labelledby="title desc">
+  <title id="title">Triscaler architecture for mobile</title>
+  <desc id="desc">A vertical mobile architecture diagram showing supported sources, local AI-assisted evaluation, reporting policy and analyst review, followed by planned LDAP and LLM capabilities.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1f7ff"/><stop offset="1" stop-color="#eff8f5"/></linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="140%" height="145%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#1a355a" flood-opacity=".1"/></filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#71839c"/></marker>
+  </defs>
+  <rect width="390" height="850" rx="14" fill="url(#bg)"/>
+  <g font-family="Arial,sans-serif">
+    <text x="22" y="34" fill="#075ebd" font-size="11" font-weight="700" letter-spacing="1.3">PUBLIC ARCHITECTURE · MAC-FIRST</text>
+    <text x="22" y="66" fill="#102039" font-size="22" font-weight="700">Local AI. Controlled reporting.</text>
+    <text x="22" y="91" fill="#58677d" font-size="13">Current product flows top to bottom.</text>
+
+    <g filter="url(#shadow)">
+      <rect x="22" y="116" width="346" height="88" rx="9" fill="#fff" stroke="#c8dcf4"/>
+      <rect x="22" y="116" width="6" height="88" rx="3" fill="#4c91e6"/>
+      <circle cx="52" cy="148" r="11" fill="#eaf3ff" stroke="#6da8ef"/>
+      <path d="M47 148h10M52 143v10" stroke="#176bca" stroke-width="1.5"/>
+      <text x="74" y="150" fill="#102039" font-size="16" font-weight="700">Supported sources</text>
+      <text x="74" y="176" fill="#58677d" font-size="13">Files · local records · browser · AI chats</text>
+
+      <rect x="22" y="231" width="346" height="96" rx="9" fill="#fff" stroke="#bfe2d7"/>
+      <rect x="22" y="231" width="6" height="96" rx="3" fill="#26a487"/>
+      <g fill="#53b69d"><rect x="48" y="260" width="10" height="22" rx="3"/><rect x="63" y="250" width="10" height="32" rx="3"/><rect x="78" y="265" width="10" height="17" rx="3"/></g>
+      <text x="102" y="266" fill="#102039" font-size="16" font-weight="700">Local AI + evidence</text>
+      <text x="102" y="290" fill="#58677d" font-size="13">Embedding adds context on the Mac.</text>
+      <text x="102" y="309" fill="#087763" font-size="12" font-weight="700">AI ALONE CANNOT CREATE A FINDING</text>
+
+      <rect x="22" y="354" width="346" height="88" rx="9" fill="#fff" stroke="#e7d29c"/>
+      <rect x="22" y="354" width="6" height="88" rx="3" fill="#d59c37"/>
+      <circle cx="57" cy="386" r="12" fill="#fff8e9" stroke="#d5b35e"/>
+      <path d="M51 386h12M57 380v12" stroke="#94630c" stroke-width="1.5"/>
+      <text x="82" y="388" fill="#102039" font-size="16" font-weight="700">Reporting policy</text>
+      <text x="82" y="414" fill="#58677d" font-size="13">Decides what can be sent to the server.</text>
+
+      <rect x="22" y="469" width="346" height="88" rx="9" fill="#fff" stroke="#c8e4da"/>
+      <rect x="22" y="469" width="6" height="88" rx="3" fill="#249b7e"/>
+      <circle cx="57" cy="501" r="12" fill="#e8f7f2" stroke="#48aa90"/>
+      <path d="M51 501l4 4 8-9" fill="none" stroke="#087763" stroke-width="2"/>
+      <text x="82" y="503" fill="#102039" font-size="16" font-weight="700">Analyst console</text>
+      <text x="82" y="529" fill="#58677d" font-size="13">Review · assign · record</text>
+    </g>
+
+    <line x1="195" y1="205" x2="195" y2="225" stroke="#71839c" stroke-width="1.8" marker-end="url(#arrow)"/>
+    <line x1="195" y1="328" x2="195" y2="348" stroke="#71839c" stroke-width="1.8" marker-end="url(#arrow)"/>
+    <line x1="195" y1="443" x2="195" y2="463" stroke="#71839c" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+    <rect x="22" y="605" width="346" height="218" rx="10" fill="#fffaf0" stroke="#d8b15c" stroke-width="1.4" stroke-dasharray="6 5"/>
+    <text x="42" y="638" fill="#94630c" font-size="11" font-weight="700" letter-spacing="1">PLANNED · NOT AVAILABLE TODAY</text>
+    <text x="42" y="670" fill="#102039" font-size="15" font-weight="700">LDAP identity validation</text>
+    <text x="42" y="692" fill="#74674b" font-size="12">Directory context for account review.</text>
+    <line x1="42" y1="712" x2="348" y2="712" stroke="#eadbb8"/>
+    <text x="42" y="744" fill="#102039" font-size="15" font-weight="700">LLM user-risk profile</text>
+    <text x="42" y="766" fill="#74674b" font-size="12">Server-side summary and score for a person</text>
+    <text x="42" y="784" fill="#74674b" font-size="12">to review; safeguards need design first.</text>
+  </g>
+</svg>

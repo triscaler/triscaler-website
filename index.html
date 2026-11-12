@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Triscaler | Endpoint, Browser &amp; AI-Tool Visibility</title>
-  <meta name="description" content="Discover sensitive data on macOS endpoints, warn on supported browser flows, and see metadata-only outbound TCP activity linked to recognized AI assistants and child processes." />
+  <title>Triscaler | Credential discovery and AI activity on Mac</title>
+  <meta name="description" content="Find exposed credentials on Mac, check supported AI chat records locally, and review best-effort connection details from recognized AI apps." />
   <link rel="canonical" href="https://triscaler.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://triscaler.com/" />
-  <meta property="og:title" content="Triscaler | Endpoint, Browser &amp; AI-Tool Visibility" />
-  <meta property="og:description" content="Find sensitive data on endpoints, warn on supported browser flows, and add privacy-conscious context about recognized AI assistants and outbound connections." />
+  <meta property="og:title" content="Triscaler | Credential discovery and AI activity on Mac" />
+  <meta property="og:description" content="Find exposed credentials on Mac, check supported AI chat records locally, and review best-effort connection details from recognized AI apps." />
   <meta property="og:image" content="https://triscaler.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0b75ff" />
@@ -19,10 +19,7 @@
   <link rel="apple-touch-icon" href="favicon-180.png">
 
   <script>
-    // Runs before the body parses, so the browser never performs the jump
-    // rather than performing it and being scrolled back, which flickers.
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   </script>
 
   <style>
@@ -122,9 +119,33 @@
                       box-shadow:0 1px 2px rgba(13,21,38,.03)}
     .secondary-header:hover{background:var(--surface)}
     .mobile-contact{display:none}
+    .site-nav{display:flex;align-items:center}
+    .desktop-nav{display:flex;align-items:center;gap:2px}
+    .mobile-nav{display:none}
+    .mobile-nav summary{list-style:none;cursor:pointer;padding:7px 11px;border:1px solid var(--line);border-radius:8px;
+               color:var(--ink);font-size:13px;font-weight:600;background:#fff}
+    .mobile-nav summary::-webkit-details-marker{display:none}
+    .mobile-nav-panel{position:absolute;right:20px;top:calc(100% + 8px);display:grid;min-width:210px;padding:8px;
+              border:1px solid var(--line);border-radius:10px;background:#fff;box-shadow:var(--shadow)}
+    .mobile-nav-panel a{display:block;padding:10px 11px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:14px}
+    .mobile-nav-panel a:hover{background:var(--surface);color:var(--ink)}
+    .mobile-nav-panel .cta{margin:5px 0 0;color:#fff}
+
+    /* Public architecture --------------------------------------------- */
+    .architecture-figure{width:100%;margin:24px 0 0;overflow:hidden;border:1px solid var(--line);border-radius:10px;
+               scroll-margin-top:calc(var(--header-h) + 28px);
+               background:#f6f9fd;box-shadow:var(--shadow-sm)}
+    .architecture-figure img{display:block;width:100%;height:auto}
+    .architecture-figure:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+    .architecture-figure figcaption{padding:10px 15px;border-top:1px solid var(--line);color:var(--muted);
+                    background:#fff;font-size:12px;line-height:1.55}
+    .sequence-figure{margin-top:20px}
+    .sequence-intro{margin-top:38px}
+    .sequence-intro h4{margin:0 0 7px;font-size:21px}
+    .sequence-intro p{margin:0}
 
     /* Hero -------------------------------------------------------------- */
-    .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:54px;align-items:center;
+    .hero{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:30px;align-items:center;
           padding:36px 0 72px;position:relative}
     /* A wash that bleeds past the container, so the fold has colour without
        tinting the text sitting on it. */
@@ -150,47 +171,9 @@
               padding:3px 0;color:var(--muted);font-size:13px;font-weight:550;line-height:1.5}
     .hero-tag::before{content:"";flex:0 0 7px;width:7px;height:7px;margin-top:7px;
                       border-radius:50%;background:var(--blue)}
-    .product-preview{position:relative;overflow:hidden;background:var(--navy);color:#fff;
-                     border:1px solid #243653;border-radius:20px;padding:22px;
-                     box-shadow:0 24px 60px rgba(16,26,45,.2)}
-    .product-preview::before{content:"";position:absolute;width:270px;height:270px;right:-110px;top:-145px;
-                             border-radius:50%;background:rgba(36,117,255,.22);filter:blur(4px)}
-    .preview-head,.preview-record,.preview-meta,.sighting-head,.sighting{position:relative}
-    .preview-head{display:flex;align-items:center;gap:9px;color:#c5d2e5;
-                  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-    .preview-mark{width:8px;height:8px;border-radius:50%;background:#76d6bc;
-                  box-shadow:0 0 0 4px rgba(118,214,188,.12)}
-    .preview-label{margin-left:auto;color:#91a5c1;font-size:10px;letter-spacing:.04em}
-    .preview-record{margin-top:22px;padding:18px;border:1px solid rgba(202,220,245,.14);
-                    border-radius:14px;background:rgba(255,255,255,.055)}
-    .record-top{display:flex;align-items:center;gap:12px}
-    .record-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
-                 background:rgba(60,133,255,.18);color:#9bc2ff;font-size:17px;font-weight:700}
-    .record-copy{display:grid;gap:3px}
-    .record-copy small,.preview-meta small{color:#92a5c0;font-size:10px;font-weight:650;
-                                           letter-spacing:.09em;text-transform:uppercase}
-    .record-copy strong{font-size:15px;letter-spacing:-.01em}
-    .risk-pill{margin-left:auto;align-self:flex-start;border-radius:999px;padding:5px 8px;
-               background:rgba(255,150,117,.13);color:#ffb39a;font-size:10px;font-weight:700}
-    .secret-field{display:flex;justify-content:space-between;align-items:center;gap:12px;
-                  margin-top:17px;padding:11px 12px;border-radius:9px;background:rgba(7,14,26,.42)}
-    .secret-field span{color:#9aabc1;font-size:11px}
-    .secret-field strong{color:#d9e7fa;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-                         font-size:12px;letter-spacing:.08em}
-    .preview-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
-    .preview-meta div{display:grid;gap:4px}
-    .preview-meta strong{font-size:12px;font-weight:550;color:#e3ecf8}
-    .sighting-head{display:flex;justify-content:space-between;align-items:center;margin:20px 0 8px;
-                   color:#c5d2e5;font-size:11px;font-weight:650}
-    .sighting-head span:last-child{color:#91a5c1;font-weight:500}
-    .sighting{display:flex;align-items:center;gap:10px;padding:10px 0;
-              border-top:1px solid rgba(202,220,245,.12)}
-    .sighting-dot{width:7px;height:7px;border-radius:50%;background:#75cbbb;flex:none}
-    .sighting-copy{display:grid;gap:2px;min-width:0}
-    .sighting-copy strong{font-size:11px;font-weight:550;color:#e3ecf8}
-    .sighting-copy small{color:#91a5c1;font-size:10px}
-    .sighting-origin{margin-left:auto;color:#9bc2ff;font-size:10px;white-space:nowrap}
-    .preview-caption{margin-top:12px;text-align:right;color:#91a5c1;font-size:10px}
+    .hero-visual{margin:0;min-width:0}
+    .hero-visual img{display:block;width:100%;height:auto}
+    .hero-visual-note{margin:9px 0 0;color:var(--muted);font-size:15px;font-weight:550;line-height:1.5;text-align:center}
 
     /* Product screenshots ---------------------------------------------- */
     .screenshot-grid{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(270px,1fr);
@@ -321,13 +304,14 @@
                          display:flex;align-items:center;justify-content:center;
                          font-weight:700;font-size:13px}
     .how-list strong{color:var(--ink)}
-    .trust-card{height:100%;padding:26px;border-radius:16px;background:var(--navy);color:#fff}
-    .trust-card h4{margin:0 0 10px;font-size:19px}
-    .trust-card p{margin:0;color:#c3d0e2;font-size:14px;line-height:1.65}
+    .trust-card{height:100%;padding:26px;border:1px solid #e5eefc;border-radius:var(--radius);
+          background:linear-gradient(180deg,#f7fbff 0%,#ffffff 100%);box-shadow:var(--shadow-sm);color:var(--ink)}
+    .trust-card h4{margin:0 0 10px;font-size:20px;line-height:1.25;color:var(--ink)}
+    .trust-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
     .trust-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
-    .trust-list li{display:flex;gap:10px;color:#dce7f5;font-size:12.5px;line-height:1.5}
+    .trust-list li{display:flex;gap:10px;color:var(--muted);font-size:13px;line-height:1.5}
     .trust-list li::before{content:"";width:7px;height:7px;flex:none;margin-top:6px;
-                           border-radius:50%;background:#76d6bc}
+                           border-radius:50%;background:var(--blue)}
     .scope-note{margin-top:16px;padding:15px 17px;border-left:3px solid #fab219;
                 background:#fff9eb;color:#665a3c;border-radius:0 10px 10px 0;
                 font-size:12.5px;line-height:1.6}
@@ -367,11 +351,14 @@
                width:36px;height:36px;border-radius:50%;background:var(--surface);
                border:1px solid var(--line);transition:all .15s ease}
     .socials a:hover{color:var(--blue);border-color:#d6e2f0;background:#fff;transform:translateY(-1px)}
+    .socials a[aria-label="Facebook"],.socials a[aria-label="Instagram"]{display:none}
     .socials svg{width:16px;height:16px;fill:currentColor}
 
     /* Responsive -------------------------------------------------------- */
     @media (max-width:940px){
       .hero{grid-template-columns:1fr;gap:38px;padding:32px 0}
+      .hero-visual{width:min(720px,100%);margin-inline:auto}
+      .hero-visual img{transform:scale(1.08)}
       .grid-2{grid-template-columns:1fr;gap:32px}
       .alert-showcase{grid-template-columns:repeat(2,minmax(0,1fr))}
       .ai-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -389,6 +376,8 @@
       .screenshot-grid{grid-template-columns:1fr}
       .alert-showcase{grid-template-columns:1fr}
       .performance-grid{grid-template-columns:1fr}
+      .architecture-figure{width:100%;overflow:hidden}
+      .architecture-figure img{display:block;width:100%;height:auto}
     }
     @media (max-width:560px){
       .container{padding:0 20px}
@@ -398,9 +387,12 @@
       .logo-wrap img{width:42px;height:42px}
       .wordmark{font-size:17px}
       .brand-sub{display:none}
+      .hero-visual img{transform:scale(1.07)}
       nav{width:auto;justify-content:flex-end;margin-top:2px;margin-left:auto}
-      nav a:not(.cta){display:none}
-      nav .cta{display:none}
+      .desktop-nav{display:none}
+      .mobile-nav{display:block;position:relative}
+      .mobile-nav-panel a:not(.cta){display:block}
+      .mobile-nav-panel .cta{display:inline-flex;margin-left:0}
       .secondary-header{display:none}
       .mobile-contact{display:inline-flex !important;align-items:center;justify-content:center;
                       background:#fff;border:1px solid var(--line);color:var(--ink);
@@ -412,7 +404,9 @@
       .hero p{font-size:15px}
       .feature-grid{grid-template-columns:1fr}
       .ai-grid{grid-template-columns:1fr}
-      .product-preview{padding:18px}
+      .trust-card h4{font-size:18px}
+      #architecture .section-title h3{font-size:24px}
+      .sequence-intro h4{font-size:18px}
       .hero-tags{gap:7px}
       .hero-tag{font-size:11px}
       .section-title h3{font-size:clamp(24px,8vw,30px)}
@@ -438,7 +432,7 @@
 
   <header>
     <div class="container header-inner">
-      <a class="brand" href="./" aria-label="Triscaler home" style="text-decoration:none">
+      <a class="brand" href="index.html" aria-label="Triscaler home" style="text-decoration:none">
         <div class="logo-wrap" aria-hidden="false">
           <img src="logo.png" alt="Triscaler" width="52" height="52">
         </div>
@@ -448,15 +442,24 @@
         </div>
       </a>
 
-      <nav>
-        <a href="#platform">Platform</a>
-        <a href="#performance">Performance</a>
-        <a href="#screenshots">Screenshots</a>
-        <a href="#ai">AI coverage</a>
-        <a href="#solutions">What it finds</a>
-        <a href="#how">How it works</a>
-        <a class="secondary-header" href="#contact">Contact us</a>
-        <a class="mobile-contact" href="#contact">Contact us</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <div class="desktop-nav">
+          <a href="#platform">Product</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#ai">AI</a>
+          <a href="about.html">About</a>
+          <a class="cta" href="#contact">Request a demo</a>
+        </div>
+        <details class="mobile-nav">
+          <summary aria-label="Open navigation menu">Menu</summary>
+          <div class="mobile-nav-panel">
+            <a href="#platform">Product</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#ai">AI</a>
+            <a href="about.html">About</a>
+            <a class="cta" href="#contact">Request a demo</a>
+          </div>
+        </details>
       </nav>
     </div>
   </header>
@@ -466,70 +469,33 @@
     <!-- HERO -->
     <main class="hero" role="main">
       <div class="hero-copy">
-        <div class="eyebrow">Endpoint · Browser · AI-tool visibility</div>
-        <h1>Know where sensitive data lives.<br><em>See when AI tools connect out.</em></h1>
-        <p class="muted">On-device analysis finds exposed credentials. Supported browser checks
-        warn when secrets and selected financial identifiers appear; preflight can pause some
-        sends before submission. A best-effort macOS monitor links recognized AI assistants
-        to outbound TCP activity from identifiable child processes. It does not collect
-        prompts or inspect encrypted traffic.</p>
+        <div class="eyebrow">Credential security for AI workflows</div>
+        <h1>Find exposed credentials.<br><em>Keep AI in view.</em></h1>
+        <p class="muted">Find credentials and selected financial data on macOS today. A Windows agent is coming soon. Triscaler also checks supported browser actions and local AI chat records, and shows best-effort connection details for recognized AI apps.</p>
 
-        <p class="cta-note" style="margin-top:24px">Interested in a demo? <a href="#contact">Contact us</a>.</p>
+        <p class="cta-note" style="margin-top:24px"><a href="#contact">See a guided demo</a></p>
 
         <ul class="hero-tags" aria-label="Platform highlights">
-          <li class="hero-tag">Local ONNX scans · no paid AI API</li>
-          <li class="hero-tag">Browser warnings · secrets + financial data</li>
-          <li class="hero-tag">AI tool → child process → TCP metadata</li>
+          <li class="hero-tag">macOS today · Windows agent coming soon.</li>
+          <li class="hero-tag">A local AI model adds context to credential checks.</li>
+          <li class="hero-tag">Supported AI chat records are checked on the Mac.</li>
+          <li class="hero-tag">AI-app connections: metadata only, best-effort.</li>
         </ul>
       </div>
 
-      <div>
-        <div class="product-preview" aria-label="Illustrative view of endpoint discovery, browser warnings and AI-tool network context">
-          <div class="preview-head">
-            <span class="preview-mark" aria-hidden="true"></span>
-            <span>Endpoint signal overview</span>
-            <span class="preview-label">Illustrative</span>
-          </div>
-          <div class="preview-record">
-            <div class="record-top">
-              <span class="record-icon" aria-hidden="true">B</span>
-              <div class="record-copy">
-                <small>Browser check</small>
-                <strong>Sensitive data warning</strong>
-              </div>
-              <span class="risk-pill">Preflight flow</span>
-            </div>
-            <div class="secret-field">
-              <span>Selected checks</span>
-              <strong>Secrets · cards · financial IDs</strong>
-            </div>
-            <div class="preview-meta">
-              <div><small>AI assistants</small><strong>Claude · Cline · Gemini CLI</strong></div>
-              <div><small>Network signal</small><strong>Child TCP · metadata only</strong></div>
-            </div>
-          </div>
-          <div class="sighting-head"><span>Outbound context</span><span>Best effort</span></div>
-          <div class="sighting">
-            <span class="sighting-dot" aria-hidden="true"></span>
-            <div class="sighting-copy"><strong>Recognized AI process</strong><small>Known tool signature in process ancestry</small></div>
-            <span class="sighting-origin">Local</span>
-          </div>
-          <div class="sighting">
-            <span class="sighting-dot" aria-hidden="true"></span>
-            <div class="sighting-copy"><strong>Child connection</strong><small>Established TCP · public IP</small></div>
-            <span class="sighting-origin">Metadata</span>
-          </div>
-        </div>
-        <div class="preview-caption">Illustrative signals · TLS traffic contents are not inspected</div>
-      </div>
+      <figure class="hero-visual">
+        <img src="screenshots/ai-embedding-hero.svg"
+             alt="Supported text is evaluated on the Mac. A local AI embedding adds context alongside credential format and account checks; only matching independent evidence creates a local finding."
+             width="960" height="560" fetchpriority="high">
+        <figcaption class="hero-visual-note">Local AI adds context. It cannot create a finding on its own.</figcaption>
+      </figure>
     </main>
 
     <section id="screenshots">
       <div class="section-title">
         <div class="eyebrow">Product screens</div>
         <h3>From an endpoint alert to the security console.</h3>
-        <p class="muted" style="max-width:72ch">A quick look at the local employee experience
-        and the fleet-wide analyst view.</p>
+        <p class="muted" style="max-width:72ch">See what a person sees on the Mac and what an analyst sees in the console.</p>
       </div>
 
       <div class="screenshot-grid">
@@ -564,16 +530,15 @@
 
     <section id="ai" class="ai-band">
       <div class="section-title">
-        <div class="eyebrow">On-device AI · browser warnings · AI activity</div>
-        <h3>See what the local report alerts on.</h3>
-        <p class="muted" style="max-width:72ch">Review browser warnings, confirmed credential
-        findings and AI-tool network activity, with clear limits on what each alert means.</p>
+        <div class="eyebrow">AI model · AI chats · AI connections</div>
+        <h3>How Triscaler handles AI.</h3>
+        <p class="muted" style="max-width:72ch">AI appears in three separate ways: a local model that adds context to scans, supported AI chat records on the Mac, and limited connection details for some AI apps. Each has its own limits.</p>
       </div>
 
       <div class="alert-showcase">
         <article class="alert-type-card">
-          <div class="alert-type-label">Browser warnings</div>
-          <h4>Secrets and selected financial data</h4>
+          <div class="alert-type-label">AI chats and browser warnings</div>
+          <h4>Check supported sends</h4>
           <figure class="alert-notice-shot">
             <a class="screenshot-link" href="screenshots/browser-alert.png"
                target="_blank" rel="noopener" aria-label="Open the Google search warning example">
@@ -606,8 +571,8 @@
           report is an attestation, so it does not close the finding.</p>
         </article>
         <article class="alert-type-card">
-          <div class="alert-type-label">AI tool · outbound alert</div>
-          <h4>GitHub Copilot</h4>
+          <div class="alert-type-label">AI app · connection alert</div>
+          <h4>Recognized AI app</h4>
           <p class="alert-destination">External connection to <code>1.1.1.1:443</code></p>
           <figure class="alert-notice-shot">
             <a href="screenshots/outbound-network-notification.png" target="_blank"
@@ -618,42 +583,31 @@
             </a>
             <figcaption class="alert-notice-caption">Outbound activity notification</figcaption>
           </figure>
-          <p>Observed in the live monitor test with a synthetic Copilot signature.
-          Connection metadata only. TLS content is not inspected.</p>
+          <p>This example uses test data. Triscaler records limited connection details only; it does not read prompts or inspect encrypted traffic.</p>
         </article>
       </div>
 
       <div class="ai-grid">
         <div class="feature">
           <span class="feature-mark" aria-hidden="true">01</span>
-          <h4>Local ONNX embeddings, grounded in evidence</h4>
-          <p class="muted">Workstation scans use a local ONNX embedding model for an additional
-          semantic signal, without a paid AI API or per-scan model charge. Structural patterns
-          and checksums remain primary evidence; similarity alone cannot create a finding.
-          Source files are not sent to the server for this model analysis.</p>
+          <h4>A local AI model adds context</h4>
+          <p class="muted">A small AI model runs on the Mac and adds context to other credential checks. It cannot create a finding by itself. Scanning does not send content to a cloud AI service.</p>
         </div>
         <div class="feature">
           <span class="feature-mark" aria-hidden="true">02</span>
-          <h4>Credential copies in AI-assistant workspaces</h4>
-          <p class="muted">Recognized Claude Code, Cline, Gemini CLI and Copilot transcripts
-          are checked locally for credentials matching an unchanged source file. A chat copy
-          alone is not a finding, and conversation text is not uploaded. This is not a
-          pre-send warning for desktop prompts.</p>
+          <h4>Check supported AI chat records</h4>
+          <p class="muted">Triscaler checks selected Claude Code, Cline, Gemini CLI and Copilot records stored on the Mac. A chat match only counts when the same credential is verified in an unchanged source file. Chat text is not uploaded, and desktop prompts are not checked before sending.</p>
         </div>
         <div class="feature">
           <span class="feature-mark" aria-hidden="true">03</span>
-          <h4>Outbound TCP context from AI tools</h4>
-          <p class="muted">A best-effort macOS monitor links established outbound TCP
-          connections to public IPs with recognized AI processes and identifiable children.
-          It records metadata only. It does not collect prompts, domains or TLS contents,
-          and it does not block.</p>
+          <h4>See limited AI-app connection details</h4>
+          <p class="muted">On Mac, Triscaler can associate some outgoing connections with recognized AI apps. This is best-effort metadata. It does not read prompts, inspect encrypted traffic or block connections.</p>
         </div>
       </div>
       <div class="ai-note">
-        <strong>Clear boundaries:</strong> desktop assistant prompts are not intercepted.
-        Transcript checks require a verified source-file match; browser checks cover supported
-        flows and selected identifiers, not broad PII or health-record discovery. Outbound
-        monitoring may miss short-lived or reparented processes and never inspects TLS content.
+        <strong>AI limits:</strong> desktop prompts are not intercepted. Chat records are checked
+        only when a credential matches an unchanged source file. Browser checks cover selected
+        flows. Connection monitoring is best-effort metadata and may miss activity.
       </div>
     </section>
 
@@ -684,11 +638,43 @@
         <div class="state">
           <div class="state-tag">In use</div>
           <h4>Add context about activity</h4>
-          <p class="muted">See when a process references a watched credential path and recognize
-          some AI-tool network connections. Outbound monitoring records connection metadata,
-          not encrypted traffic contents.</p>
+          <p class="muted">See when a process references a watched credential path and get limited
+          connection details for some AI apps. This is metadata, not the content sent by the app.</p>
         </div>
       </div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture">
+      <div class="section-title">
+        <div class="eyebrow">Public architecture</div>
+        <h3>Local discovery. Deliberate reporting.</h3>
+        <p class="muted" style="max-width:72ch">This is a product-level view, not a deployment blueprint. It shows where the Mac checks data, where reporting is controlled and where an analyst takes over.</p>
+      </div>
+
+      <figure class="architecture-figure" tabindex="0" aria-label="Current and planned product architecture.">
+        <picture>
+          <source media="(max-width: 700px)" srcset="screenshots/architecture-isometric-mobile.svg">
+          <img src="screenshots/architecture-isometric.svg"
+               alt="Layered architecture showing supported data sources, local AI-assisted evaluation and encrypted local state on a Mac, followed by policy-controlled reporting to the central analyst console. Planned identity and user-risk services are separated from current capabilities."
+               width="1440" height="760" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>The diagram separates current product layers from future planned work.</figcaption>
+      </figure>
+
+      <div class="sequence-intro">
+        <h4>Sequence: detect, respond and recover</h4>
+        <p class="muted">The diagram combines the current finding flow with a planned, approval-gated quarantine path.</p>
+      </div>
+      <figure class="architecture-figure sequence-figure" tabindex="0" aria-label="Sequence diagram for current and planned product flows.">
+        <picture>
+          <source media="(max-width: 700px)" srcset="screenshots/architecture-sequence-combined-mobile.svg">
+          <img src="screenshots/architecture-sequence-combined.svg"
+               alt="One sequence diagram shows current local detection and policy-controlled reporting, followed by planned analyst approval, a signed scoped quarantine request, a local file hash recheck, encrypted local containment, an audit receipt and a restore path. Quarantine does not resolve credential rotation."
+               width="1200" height="1220" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Blue shows current detection and reporting; amber shows planned approval-gated remediation and quarantine. Containment does not resolve rotation.</figcaption>
+      </figure>
     </section>
 
     <!-- Performance -->
@@ -828,8 +814,8 @@
         </div>
         <div class="trust-card">
           <h4>Inspect locally. Share deliberately.</h4>
-          <p>Source files and full browser prompts stay on the endpoint. When a detector finds
-          a credential, a finding record can include the matched value so an authorized team
+          <p>Triscaler does not upload whole source files or full browser prompts. A
+          policy-approved finding may still include the matched value so an authorized team
           can investigate and rotate it.</p>
           <ul class="trust-list">
             <li>Local findings are encrypted in the agent database.</li>
@@ -844,8 +830,8 @@
         <strong>Current scope:</strong> macOS endpoint agent and a central web console. Browser
         coverage depends on extension permissions and supported flows; outbound AI-tool monitoring
         is best-effort metadata, not content inspection. Triscaler does not currently block
-        network traffic or quarantine files, and broad health-record/PII discovery and Windows
-        endpoint support are not presented as shipped features.
+        network traffic or quarantine files, and broad health-record/PII discovery is not included.
+        The Windows agent is planned and is not available yet.
       </div>
     </section>
 
@@ -896,7 +882,7 @@
           </div>
         </div>
 
-        <div class="footer-copy">© <span id="yr"></span> Triscaler. All rights reserved. <a href="LICENSE" rel="license">Licence terms</a></div>
+        <div class="footer-copy">© <span id="yr"></span> Triscaler. All rights reserved. <a href="#architecture">Architecture</a> · <a href="about.html">About</a> · <a href="license.html" rel="license">Licence terms</a></div>
 
         <div class="socials">
           <a href="https://www.linkedin.com/company/triscaler" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.82-2.05 3.75-2.05 4 0 4.4 2.6 4.4 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
@@ -912,7 +898,16 @@
     document.getElementById('yr').textContent = new Date().getFullYear();
     // Belt and braces: if the browser restored a position anyway, land at
     // the top once everything has loaded.
-    window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    window.addEventListener('load', function () {
+      if (location.hash) {
+        var target = document.getElementById(location.hash.slice(1));
+        if (target) {
+          target.scrollIntoView();
+          return;
+        }
+      }
+      window.scrollTo(0, 0);
+    });
 
     // Shadow under the bar once the page has moved, so it reads as floating
     // above the content instead of welded to the top of it. A sentinel plus
@@ -929,6 +924,13 @@
 
     // Mark which section is being read. On a one-page site the nav is the
     // only thing that can tell you where you are.
+    document.querySelectorAll('.mobile-nav-panel a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        var menu = link.closest('.mobile-nav');
+        if (menu) menu.open = false;
+      });
+    });
+
     var links = Array.prototype.slice.call(document.querySelectorAll('nav a[href^="#"]'));
     var sections = links
       .map(function (a) { return document.querySelector(a.getAttribute('href')); })

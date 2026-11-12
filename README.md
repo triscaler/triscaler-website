@@ -39,6 +39,8 @@ sips -Z 1200 triscaler.png --out og.png
 
 ## Development
 
-A single static `index.html` with no build step: open it in a browser. No
-framework, no webfont, and no external stylesheet. The page uses local logo
-and screenshot assets only.
+Two primary static pages, `index.html` and `about.html`, with no build step:
+open either page in a browser. `founder.html` redirects to `about.html` for
+older links. The engineering roadmap lives in the Triscaler repository, not the
+public website. No framework, no webfont, and no external stylesheet. The
+pages use local logo and screenshot assets only.

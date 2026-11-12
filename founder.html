@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="refresh" content="0; url=about.html" />
+  <title>About Triscaler</title>
+  <meta name="description" content="About Triscaler, its product and the founder's note." />
+  <link rel="canonical" href="https://triscaler.com/about.html" />
+  <script>window.location.replace('about.html');</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://triscaler.com/founder.html" />
+  <meta property="og:title" content="A note from the founder | Triscaler" />
+  <meta property="og:description" content="A founder's note on credential risks in AI workflows, local checks and clear product limits." />
+  <meta property="og:image" content="https://triscaler.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0b75ff" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="favicon-180.png">
+  <link rel="apple-touch-icon" href="favicon-180.png">
+  <style>
+    :root{
+      --blue:#0b75ff;
+      --blue-ink:#084da8;
+      --blue-wash:#eef5ff;
+      --ink:#0d1526;
+      --muted:#5b6678;
+      --faint:#8892a4;
+      --line:#e6ebf2;
+      --surface:#f7f9fc;
+      --max-w:1120px;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--ink);background:#fff;line-height:1.65;
+         -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    a{color:inherit}
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
+    .site-header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .brand img{display:block;width:42px;height:42px;object-fit:contain}
+    .brand strong{display:block;font-size:17px;line-height:1.2}
+    .brand small{display:block;color:var(--faint);font-size:11px;line-height:1.4}
+    .header-links{display:flex;align-items:center;gap:18px;font-size:13px;font-weight:550}
+    .header-links a{text-decoration:none;color:var(--muted)}
+    .header-links a:hover{color:var(--blue-ink)}
+    .header-links .contact{padding:8px 13px;border-radius:7px;background:var(--blue);color:#fff}
+    .masthead{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:linear-gradient(112deg,#f0f6ff 0%,#fff 57%,#f4faf8 100%)}
+    .masthead::after{content:"";position:absolute;right:-110px;top:-180px;width:420px;height:420px;border:1px solid rgba(11,117,255,.12);border-radius:50%;box-shadow:0 0 0 42px rgba(11,117,255,.025),0 0 0 84px rgba(11,117,255,.02);pointer-events:none}
+    .masthead-inner{position:relative;z-index:1;padding-top:68px;padding-bottom:64px;max-width:900px}
+    .eyebrow{margin:0 0 18px;color:var(--blue-ink);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    h1,h2{line-height:1.18;letter-spacing:-.025em}
+    h1{max-width:850px;margin:0;font-size:52px;font-weight:650}
+    .dek{max-width:720px;margin:22px 0 0;color:#465367;font-size:18px;line-height:1.65}
+    .byline{margin:24px 0 0;color:var(--muted);font-size:13px}
+    .byline strong{color:var(--ink);font-weight:650}
+    main{display:block}
+    .main-grid{display:grid;grid-template-columns:minmax(0,720px) minmax(210px,1fr);gap:76px;padding-top:58px;padding-bottom:54px;align-items:start}
+    article{max-width:720px}
+    .continuation{padding-top:58px;padding-bottom:82px}
+    article section{padding:0 0 34px;margin:0 0 34px;border-bottom:1px solid var(--line);scroll-margin-top:90px}
+    article section:last-child{padding-bottom:0;margin-bottom:0;border-bottom:0}
+    article h2{margin:0 0 14px;font-size:26px;font-weight:650}
+    article p{margin:0 0 16px;color:#374356;font-size:16px}
+    article p:last-child{margin-bottom:0}
+    .page-index{position:sticky;top:94px;padding:4px 0 4px 22px;border-left:2px solid #dceaff}
+    .page-index h2{margin:0 0 16px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+    .page-index ol{display:grid;gap:11px;margin:0;padding:0;list-style:none;counter-reset:sections}
+    .page-index li{counter-increment:sections}
+    .page-index a{color:var(--muted);font-size:13px;line-height:1.45;text-decoration:none}
+    .page-index a::before{content:"0" counter(sections) "  ";color:var(--faint);font-variant-numeric:tabular-nums}
+    .page-index a:hover{color:var(--blue-ink)}
+    .architecture-band{padding:50px 0 56px;background:linear-gradient(112deg,#f3f7fd 0%,#f7f9fc 58%,#f2f8f6 100%);border-block:1px solid var(--line);scroll-margin-top:90px}
+    .architecture-content{max-width:var(--max-w);margin:0 auto}
+    .architecture-content h2{margin:0 0 14px;font-size:26px;font-weight:650}
+    .architecture-intro{margin:0;color:#374356;font-size:16px}
+    .architecture-figures{display:grid;gap:18px;margin:23px 0}
+    .architecture-figure{margin:0;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#f7f9fc}
+    .architecture-figure img{display:block;width:100%;height:auto}
+    .architecture-figure figcaption{padding:10px 14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.5}
+    .architecture-mobile-summary{display:none}
+    .architecture-mobile-flow{display:grid;gap:0;margin:0;padding:0;list-style:none;counter-reset:flow}
+    .architecture-mobile-flow li{counter-increment:flow;display:grid;grid-template-columns:34px 1fr;gap:12px;padding:14px 0;border-top:1px solid #dfe6ef}
+    .architecture-mobile-flow li::before{content:"0" counter(flow);color:var(--blue-ink);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
+    .architecture-mobile-flow strong{display:block;color:var(--ink);font-size:14px}
+    .architecture-mobile-flow span,.architecture-mobile-boundary p{display:block;margin:3px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+    .architecture-mobile-boundary{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    .architecture-mobile-boundary h3{margin:0;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+    .architecture-mobile-boundary p{margin-top:5px}
+    .data-note{margin-top:19px;padding:17px 19px;border-left:3px solid #cf8b22;background:#fff9ed}
+    .data-note strong{display:block;margin-bottom:4px;font-size:13px}
+    .data-note p{margin:0;color:#4f4a3e;font-size:13px;line-height:1.6}
+    .closing{padding:24px 26px;border-left:3px solid var(--blue);background:var(--surface)}
+    .closing p{margin:0;color:var(--ink);font-size:17px}
+    footer{border-top:1px solid var(--line);background:#fbfcfe}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;min-height:76px;color:var(--muted);font-size:12px}
+    .footer-inner a{color:var(--blue-ink);font-weight:600;text-decoration:none}
+    .footer-inner a:hover{text-decoration:underline}
+    @media(max-width:800px){
+      .masthead-inner{padding-top:52px;padding-bottom:48px}
+      h1{font-size:42px}
+      .main-grid{grid-template-columns:1fr;gap:42px;padding-top:42px;padding-bottom:44px}
+      .page-index{position:static;grid-row:1;padding:0 0 0 18px}
+      .page-index ol{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px}
+      .continuation{padding-top:42px;padding-bottom:58px}
+    }
+    @media(max-width:520px){
+      .container{padding:0 20px}
+      .header-inner{min-height:58px}
+      .brand img{width:38px;height:38px}
+      .brand small{display:none}
+      .header-links{gap:12px;font-size:12px}
+      .header-links .contact{padding:7px 10px}
+      .masthead-inner{padding-top:42px;padding-bottom:40px}
+      h1{font-size:36px}
+      .dek{font-size:16px}
+      .main-grid{gap:36px}
+      .page-index ol{grid-template-columns:1fr 1fr}
+      article h2{font-size:23px}
+      article p{font-size:15px}
+      .footer-inner{flex-direction:column;justify-content:center;text-align:center;padding:18px 0;gap:7px}
+    }
+    @media(max-width:760px){
+      .architecture-figures{display:none}
+      .architecture-mobile-summary{display:block;margin:23px 0}
+      .architecture-mobile-boundary{grid-template-columns:1fr;gap:14px}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Triscaler home">
+        <img src="logo.png" alt="" width="42" height="42">
+        <span><strong>Triscaler</strong><small>Endpoint Secrets Discovery &amp; Response</small></span>
+      </a>
+      <nav class="header-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a class="contact" href="mailto:hello@triscaler.com">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="masthead">
+    <div class="container masthead-inner">
+      <p class="eyebrow">A note from the founder</p>
+      <h1>AI is changing where credentials show up.</h1>
+      <p class="dek">A password can be copied into an AI chat just as easily as into a file. I am building Triscaler to help teams find those copies and decide what to do next.</p>
+      <p class="byline"><strong>Founder, Triscaler</strong> &nbsp;·&nbsp; What the product does and where it stops</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container main-grid">
+      <article>
+        <section id="problem">
+          <h2>Credentials do not stay in one place.</h2>
+          <p>A key or password can be copied into a file, an old export, a screenshot, source history or an AI chat. Fixing the original does not remove the other copies. Triscaler helps teams find copies in the places it supports.</p>
+          <p>Not every match is an emergency. The goal is to give people enough context to decide what needs attention.</p>
+        </section>
+
+        <section id="context">
+          <h2>One finding can have several copies.</h2>
+          <p>A useful alert should show where the value was found and which account may be affected. It should also distinguish one credential seen in several places from several different credentials.</p>
+          <p>Triscaler groups repeat sightings by credential and account, while keeping each location visible. That helps a team see what to change and where to clean up.</p>
+          <p>The aim is simple: less time sorting alerts, more time fixing the right thing.</p>
+        </section>
+      </article>
+
+      <aside class="page-index" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#problem">The problem</a></li>
+          <li><a href="#context">Why context matters</a></li>
+          <li><a href="#architecture">Architecture overview</a></li>
+          <li><a href="#privacy">Privacy and reporting</a></li>
+          <li><a href="#boundaries">Product boundaries</a></li>
+          <li><a href="#work">What we are building toward</a></li>
+        </ol>
+      </aside>
+    </div>
+
+    <section class="architecture-band" id="architecture">
+      <div class="container">
+        <div class="architecture-content">
+          <p class="eyebrow">A public view of the system</p>
+          <h2>Architecture, at the level that matters to you.</h2>
+          <p class="architecture-intro">Here is the simple version: the Mac checks supported data locally. A reporting policy decides which findings go to the console. An analyst reviews them and records what happened. These diagrams leave out the internal parts.</p>
+          <div class="architecture-figures">
+            <figure class="architecture-figure">
+              <img src="screenshots/architecture-overview.svg" alt="Conceptual flow from supported endpoint sources through local evaluation and a reporting policy to analyst review." width="1280" height="520">
+              <figcaption>Public architecture overview. A conceptual product boundary, not a complete component or deployment diagram.</figcaption>
+            </figure>
+            <figure class="architecture-figure">
+              <img src="screenshots/architecture-boundaries.svg" alt="Data boundary showing local evaluation and report state on the endpoint, with policy-approved findings sent to the central analyst console." width="1280" height="460">
+              <figcaption>Data boundary. Local discovery and central reporting are distinct steps controlled by reporting policy.</figcaption>
+            </figure>
+          </div>
+          <div class="architecture-mobile-summary" aria-label="Architecture summary">
+            <ol class="architecture-mobile-flow">
+              <li><div><strong>Supported sources</strong><span>Selected endpoint content and supported browser events.</span></div></li>
+              <li><div><strong>Local evaluation</strong><span>Content is evaluated on the Mac with local source and account context.</span></div></li>
+              <li><div><strong>Reporting policy</strong><span>Policy controls which findings and evidence are sent onward.</span></div></li>
+              <li><div><strong>Analyst workflow</strong><span>The console supports review, ownership and recorded decisions.</span></div></li>
+            </ol>
+            <div class="architecture-mobile-boundary">
+              <div><h3>On the Mac</h3><p>Local analysis, browser warning checks and report state.</p></div>
+              <div><h3>Central console</h3><p>Policy-approved findings and analyst investigation.</p></div>
+            </div>
+          </div>
+          <div class="data-note">
+            <strong>What can be sent</strong>
+            <p>Some findings can be sent to the console, based on reporting policy. A report may include the matched value. The server encrypts raw values at rest; standard finding lists hide them, and each reveal is recorded.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container continuation">
+      <article>
+        <section id="privacy">
+          <h2>How Triscaler uses AI.</h2>
+          <p>A small AI model runs on the Mac and adds context to other credential checks. It cannot create a finding by itself. Scanning does not send content to a cloud AI service.</p>
+          <p>Triscaler checks selected AI chat records stored on the Mac. A chat match only counts when the same credential is verified in an unchanged source file. Chat text is not uploaded, and this is not a warning before a desktop AI prompt is sent.</p>
+          <p>For some AI apps, Triscaler can note that a connection happened and which app it came from. It cannot see the data sent over that connection, and it does not stop it. This feature is best-effort and can miss activity. Supported browser checks also run locally; text checked for a browser warning is not sent to the console.</p>
+        </section>
+
+        <section id="boundaries">
+          <h2>What it cannot do yet.</h2>
+          <p>Triscaler is being built for Mac. It does not cover every file, browser action or app. It does not inspect network content or block a connection. It cannot verify that a credential has been changed. A person still needs to review findings and decide what to do.</p>
+          <p>I want these limits to be clear before anyone relies on the product.</p>
+        </section>
+
+        <section id="work">
+          <h2>What I want Triscaler to do well.</h2>
+          <p>Show what was found, where else it appears and what changed after someone acted. Keep the evidence clear, protect sensitive details in the interface and leave the decision with the people responsible for it.</p>
+          <p>We are still building. I will keep sharing what works, what needs work and what we learn from people using the product.</p>
+          <div class="closing">
+            <p>A finding is useful when it helps someone understand the problem and take the next step.</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> Triscaler. All rights reserved.</span>
+      <span><a href="index.html">Back to Triscaler</a> &nbsp;·&nbsp; <a href="license.html" rel="license">Licence terms</a></span>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Triscaler | Credential security for AI workflows</title>
+  <meta name="description" content="Learn what Triscaler is building, how its local AI-assisted discovery works, and what is current versus planned." />
+  <link rel="canonical" href="https://triscaler.com/about.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://triscaler.com/about.html" />
+  <meta property="og:title" content="About Triscaler" />
+  <meta property="og:description" content="A Mac-focused product in development for finding exposed credentials and understanding their context." />
+  <meta property="og:image" content="https://triscaler.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0b75ff" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="favicon-180.png">
+  <link rel="apple-touch-icon" href="favicon-180.png">
+  <style>
+    :root{--blue:#0b75ff;--blue-ink:#084da8;--blue-wash:#eef5ff;--ink:#0d1526;--muted:#5b6678;--faint:#8892a4;--line:#e6ebf2;--surface:#f7f9fc;--max-w:1120px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--ink);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    a{color:inherit}
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
+    header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .brand img{display:block;width:42px;height:42px;object-fit:contain}
+    .brand strong{display:block;font-size:17px;line-height:1.2}
+    .brand small{display:block;color:var(--faint);font-size:11px}
+    nav,.desktop-nav{display:flex;align-items:center;gap:4px}
+    nav a{padding:8px 11px;border-radius:8px;color:var(--muted);font-size:13px;font-weight:550;text-decoration:none}
+    nav a:hover,nav a.active{background:var(--blue-wash);color:var(--blue-ink)}
+    nav a.demo{background:var(--blue);color:#fff;padding-inline:14px}
+    .mobile-nav{display:none;position:relative}
+    .mobile-nav summary{list-style:none;padding:7px 11px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer}
+    .mobile-nav summary::-webkit-details-marker{display:none}
+    .mobile-panel{position:absolute;right:0;top:calc(100% + 8px);display:grid;min-width:215px;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff;box-shadow:0 12px 30px rgba(13,21,38,.12)}
+    .mobile-panel a{padding:10px 11px}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(112deg,#eef5ff 0%,#fff 58%,#eff8f5 100%);border-bottom:1px solid var(--line)}
+    .hero::after{content:"";position:absolute;right:6%;top:-115px;width:340px;height:340px;border:1px solid rgba(11,117,255,.13);border-radius:50%;box-shadow:0 0 0 36px rgba(11,117,255,.025),0 0 0 72px rgba(11,117,255,.02);pointer-events:none}
+    .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.35fr .65fr;gap:70px;align-items:end;padding-top:68px;padding-bottom:62px}
+    .eyebrow{margin:0 0 15px;color:var(--blue-ink);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    h1,h2,h3{line-height:1.2;letter-spacing:-.025em}
+    h1{max-width:760px;margin:0;font-size:48px;font-weight:650}
+    .hero-copy{max-width:690px;margin:20px 0 0;color:#465367;font-size:17px}
+    .status{padding:0 0 5px 20px;border-left:2px solid #cae0fc}
+    .status strong{display:block;font-size:14px}
+    .status p{margin:5px 0 16px;color:var(--muted);font-size:13px;line-height:1.5}
+    main{display:grid;grid-template-columns:minmax(0,720px) minmax(210px,1fr);gap:76px;padding-top:54px;padding-bottom:72px;align-items:start}
+    article{max-width:720px}
+    article section{padding:0 0 30px;margin:0 0 30px;border-bottom:1px solid var(--line);scroll-margin-top:90px}
+    article section:last-child{padding:0;margin:0;border:0}
+    h2{margin:0 0 12px;font-size:25px;font-weight:650}
+    article p{margin:0 0 14px;color:#374356;font-size:15px}
+    article p:last-child{margin-bottom:0}
+    .founder-note{margin-top:20px;padding:21px 23px;border-left:3px solid var(--blue);background:var(--surface)}
+    .founder-note p{margin:0;color:var(--ink);font-size:16px}
+    .founder-note cite{display:block;margin-top:12px;color:var(--muted);font-size:12px;font-style:normal;font-weight:600}
+    aside{position:sticky;top:90px;padding-left:21px;border-left:2px solid #dceaff}
+    aside h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    aside ul{display:grid;gap:13px;margin:0;padding:0;list-style:none}
+    aside li{color:var(--muted);font-size:13px;line-height:1.5}
+    aside strong{display:block;color:var(--ink);font-size:14px}
+    .next-band{padding:46px 0;background:#f6f9fc;border-block:1px solid var(--line)}
+    .next-inner{display:grid;grid-template-columns:.75fr 1.25fr;gap:54px;align-items:start}
+    .next-inner h2{margin:0;font-size:26px}
+    .next-copy{padding-left:22px;border-left:2px dashed #d1ae64}
+    .next-copy p{margin:0 0 13px;color:#465367;font-size:14px}
+    .next-copy strong{color:var(--ink)}
+    .next-note{margin-top:14px!important;color:var(--faint)!important;font-size:12px!important}
+    .page-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .page-links a{padding:9px 13px;border:1px solid var(--line);border-radius:7px;color:var(--blue-ink);background:#fff;font-size:13px;font-weight:600;text-decoration:none}
+    .page-links a:hover{background:var(--blue-wash)}
+    footer{border-top:1px solid var(--line);background:#fbfcfe}
+    .footer-inner{display:flex;justify-content:space-between;gap:18px;align-items:center;min-height:74px;color:var(--muted);font-size:12px}
+    .footer-inner a{color:var(--blue-ink);font-weight:600;text-decoration:none}
+    .footer-inner a:hover{text-decoration:underline}
+    @media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:28px}.status{max-width:650px}main{grid-template-columns:1fr;gap:36px}.next-inner{grid-template-columns:1fr;gap:20px}aside{position:static}}
+    @media(max-width:680px){.container{padding:0 20px}.desktop-nav{display:none}.mobile-nav{display:block}.hero-inner{padding-top:48px;padding-bottom:43px}h1{font-size:37px}.hero-copy{font-size:16px}main{padding-top:38px;padding-bottom:52px}.next-band{padding:35px 0}.next-copy{padding-left:16px}.footer-inner{flex-direction:column;justify-content:center;text-align:center;padding:16px 0;gap:7px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Triscaler home"><img src="logo.png" alt="" width="42" height="42"><span><strong>Triscaler</strong><small>Credential security for AI workflows</small></span></a>
+      <nav aria-label="Main navigation">
+        <div class="desktop-nav">
+          <a href="index.html#platform">Product</a>
+          <a href="index.html#architecture">Architecture</a>
+          <a href="index.html#ai">AI</a>
+          <a class="active" href="about.html" aria-current="page">About</a>
+          <a class="demo" href="index.html#contact">Request a demo</a>
+        </div>
+        <details class="mobile-nav">
+          <summary aria-label="Open navigation menu">Menu</summary>
+          <div class="mobile-panel">
+            <a href="index.html#platform">Product</a><a href="index.html#architecture">Architecture</a>
+            <a href="index.html#ai">AI</a>
+            <a class="active" href="about.html" aria-current="page">About</a>
+            <a class="demo" href="index.html#contact">Request a demo</a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="container hero-inner">
+      <div>
+        <p class="eyebrow">About Triscaler</p>
+        <h1>Find the credential. Understand the context. Decide what to do.</h1>
+        <p class="hero-copy">Triscaler is a macOS security product in development, with a Windows agent coming soon. It helps teams find exposed credentials, see where copies remain and review them with account and source context, including selected AI workflows.</p>
+      </div>
+      <div class="status">
+        <strong>Available today</strong>
+        <p>macOS agent, central analyst console and supported browser checks.</p>
+        <strong>Coming soon</strong>
+        <p>Windows agent. It is not available yet.</p>
+        <strong>Product status</strong>
+        <p>Not a general-availability or independently certified service.</p>
+        <strong>What guides the work</strong>
+        <p>Useful evidence, careful handling of sensitive data and clear statements about product limits.</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <article>
+      <section id="why">
+        <p class="eyebrow">Why we are building it</p>
+        <h2>Credentials spread through ordinary work.</h2>
+        <p>Passwords and keys get copied into files, exports, source history, screenshots and AI chats. Fixing one copy does not always fix the others. We are building Triscaler to help teams find the copies it supports, understand which account may be affected and see where to start.</p>
+        <div class="founder-note">
+          <p>I am building Triscaler to make an exposure easier to understand, not just add another alert. It should show what was found, where it appeared and what still needs a person's attention.</p>
+          <cite>Founder, Triscaler</cite>
+        </div>
+      </section>
+
+      <section id="approach">
+        <p class="eyebrow">How we work</p>
+        <h2>AI helps, but it does not make the decision.</h2>
+        <p>A local AI embedding model adds context to other checks on the Mac. It cannot create a finding on its own, and scanning does not call a cloud AI service. Supported AI chat records are checked locally against unchanged source files. For some recognized AI apps, Triscaler can report limited connection metadata; it cannot see prompts or encrypted traffic.</p>
+        <p>When findings are reported, they are sent according to policy and may include the matched value. The server encrypts raw values at rest, keeps them out of ordinary finding lists and records each reveal. We want this boundary to be visible, not hidden behind a privacy slogan.</p>
+      </section>
+
+      <section id="scope">
+        <p class="eyebrow">Current scope</p>
+        <h2>macOS today. Windows agent coming soon.</h2>
+        <p>The current endpoint agent runs on macOS; a Windows agent is planned but not available yet. Browser checks cover selected supported actions. AI-app connection monitoring is best-effort metadata, not content inspection or blocking. Analysts still review findings and decide what action to take. The product does not verify that a credential has been rotated.</p>
+        <div class="page-links">
+          <a href="index.html#architecture">See the architecture</a>
+          <a href="index.html#ai">Explore AI coverage</a>
+        </div>
+      </section>
+    </article>
+
+    <aside aria-label="Product principles">
+      <h2>Our principles</h2>
+      <ul>
+        <li><strong>Show the evidence</strong>Make findings traceable to a source and account where known.</li>
+        <li><strong>Keep AI local where possible</strong>Scanning and supported chat checks run on the endpoint.</li>
+        <li><strong>Keep people in control</strong>Analysts review findings and own the next decision.</li>
+        <li><strong>Say what is not built</strong>Planned features are labeled separately from current product.</li>
+      </ul>
+    </aside>
+  </main>
+
+  <section class="next-band" id="future">
+    <div class="container next-inner">
+      <h2>Where we hope to go next</h2>
+      <div class="next-copy">
+        <p><strong>LDAP identity validation:</strong> a planned server integration to help check account identity and ownership against an organization's directory.</p>
+        <p><strong>LLM-assisted user-risk profiles:</strong> a planned way to summarize relevant security context and provide a risk score for analyst review.</p>
+        <p class="next-note">Neither feature is available today. The data used, access controls, retention and human-review safeguards must be defined before either is built.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> Triscaler. All rights reserved.</span>
+      <span><a href="index.html">Product</a> &nbsp;·&nbsp; <a href="index.html#architecture">Architecture</a> &nbsp;·&nbsp; <a href="license.html" rel="license">Licence terms</a></span>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">Triscaler architecture: local AI-assisted discovery and controlled reporting</title>
+  <desc id="desc">A public product-level architecture. Supported endpoint sources flow through a local AI embedding and evidence checks to encrypted local state. A reporting-policy gate controls signed reports to the analyst console. Dashed modules for LDAP validation and LLM user-risk profiles are planned future work.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1f7ff"/><stop offset=".58" stop-color="#fbfcfe"/><stop offset="1" stop-color="#eff8f5"/></linearGradient>
+    <linearGradient id="blueTop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#70b3ff"/><stop offset="1" stop-color="#3f8df0"/></linearGradient>
+    <linearGradient id="tealTop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6ad3bd"/><stop offset="1" stop-color="#23a98c"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="150%" height="180%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#1a355a" flood-opacity=".12"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#71839c"/></marker>
+    <marker id="futureArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#c18a2e"/></marker>
+  </defs>
+  <rect width="1440" height="760" fill="url(#bg)"/>
+  <path d="M0 570H1440" stroke="#e1e9f2" stroke-width="1"/>
+  <g font-family="Arial,sans-serif">
+    <text x="52" y="56" fill="#075ebd" font-size="13" font-weight="700" letter-spacing="2">TRISCALER · PUBLIC ARCHITECTURE</text>
+    <text x="52" y="105" fill="#102039" font-size="34" font-weight="700">AI-assisted discovery, with a clear data boundary.</text>
+    <text x="52" y="137" fill="#58677d" font-size="16">Current product in solid lines. Planned capabilities are shown separately below.</text>
+
+    <rect x="48" y="178" width="846" height="350" rx="18" fill="#eaf3ff" fill-opacity=".68" stroke="#c9def8"/>
+    <text x="74" y="213" fill="#075ebd" font-size="12" font-weight="700" letter-spacing="1.5">ON THE MAC · CURRENT</text>
+    <rect x="1042" y="178" width="350" height="350" rx="18" fill="#edf7f4" fill-opacity=".8" stroke="#cfe7df"/>
+    <text x="1068" y="213" fill="#087763" font-size="12" font-weight="700" letter-spacing="1.5">CENTRAL CONSOLE · CURRENT</text>
+
+    <g filter="url(#shadow)">
+      <polygon points="92,311 116,292 283,292 259,311" fill="#a9d1ff"/>
+      <polygon points="259,311 283,292 283,425 259,444" fill="#d5e8ff"/>
+      <rect x="92" y="311" width="167" height="133" rx="7" fill="#fff" stroke="#c8dcf4"/>
+      <rect x="92" y="311" width="167" height="7" rx="3" fill="url(#blueTop)"/>
+      <circle cx="117" cy="346" r="8" fill="#eaf3ff" stroke="#6da8ef"/>
+      <path d="M113 346h8M117 342v8" stroke="#176bca" stroke-width="1.6"/>
+      <text x="111" y="377" fill="#102039" font-size="16" font-weight="700">Sources</text>
+      <text x="111" y="401" fill="#58677d" font-size="12">Files · databases</text>
+      <text x="111" y="420" fill="#58677d" font-size="12">AI chats · browser</text>
+
+      <polygon points="344,289 368,270 563,270 539,289" fill="#a8d7ce"/>
+      <polygon points="539,289 563,270 563,425 539,444" fill="#c8e9e2"/>
+      <rect x="344" y="289" width="195" height="155" rx="7" fill="#fff" stroke="#c9e5dd"/>
+      <rect x="344" y="289" width="195" height="7" rx="3" fill="url(#tealTop)"/>
+      <path d="M369 337l12-12 12 12-12 12zM381 325v24M369 337h24" fill="none" stroke="#138a73" stroke-width="1.8"/>
+      <text x="369" y="379" fill="#102039" font-size="16" font-weight="700">Local AI + evidence</text>
+      <text x="369" y="403" fill="#58677d" font-size="12">Embedding adds context</text>
+      <text x="369" y="422" fill="#58677d" font-size="12">Never sufficient by itself</text>
+
+      <polygon points="623,311 647,292 833,292 809,311" fill="#c8c9f5"/>
+      <polygon points="809,311 833,292 833,425 809,444" fill="#e1e1fa"/>
+      <rect x="623" y="311" width="186" height="133" rx="7" fill="#fff" stroke="#d7d8f1"/>
+      <rect x="623" y="311" width="186" height="7" rx="3" fill="#7773d8"/>
+      <rect x="648" y="333" width="23" height="27" rx="4" fill="#f0efff" stroke="#8581df"/>
+      <path d="M653 340h13M653 346h13M653 352h9" stroke="#625fc1" stroke-width="1.5"/>
+      <text x="648" y="386" fill="#102039" font-size="16" font-weight="700">Local record</text>
+      <text x="648" y="410" fill="#58677d" font-size="12">Encrypted finding state</text>
+      <text x="648" y="429" fill="#58677d" font-size="12">Signed report queue</text>
+
+      <polygon points="1081,311 1105,292 1352,292 1328,311" fill="#9dd8c9"/>
+      <polygon points="1328,311 1352,292 1352,425 1328,444" fill="#c9eadf"/>
+      <rect x="1081" y="311" width="247" height="133" rx="7" fill="#fff" stroke="#cfe7df"/>
+      <rect x="1081" y="311" width="247" height="7" rx="3" fill="#249b7e"/>
+      <circle cx="1108" cy="347" r="11" fill="#e8f7f2" stroke="#48aa90"/>
+      <path d="M1103 347l4 4 7-8" fill="none" stroke="#087763" stroke-width="2"/>
+      <text x="1102" y="386" fill="#102039" font-size="16" font-weight="700">Analyst console</text>
+      <text x="1102" y="410" fill="#58677d" font-size="12">Review · assign · record</text>
+      <text x="1102" y="429" fill="#58677d" font-size="12">Credential history</text>
+    </g>
+
+    <line x1="289" y1="377" x2="329" y2="377" stroke="#71839c" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="568" y1="377" x2="609" y2="377" stroke="#71839c" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="838" y1="377" x2="910" y2="377" stroke="#71839c" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="911" y="331" width="112" height="92" rx="10" fill="#fff8e9" stroke="#e6c982"/>
+    <text x="967" y="359" text-anchor="middle" fill="#94630c" font-size="10" font-weight="700" letter-spacing=".7">REPORTING</text>
+    <text x="967" y="377" text-anchor="middle" fill="#94630c" font-size="10" font-weight="700" letter-spacing=".7">POLICY</text>
+    <text x="967" y="401" text-anchor="middle" fill="#58677d" font-size="10">controls what is sent</text>
+    <line x1="1024" y1="377" x2="1070" y2="377" stroke="#71839c" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="74" y="606" width="1290" height="104" rx="13" fill="#fffaf0" stroke="#dfbd76" stroke-dasharray="7 6"/>
+    <text x="98" y="638" fill="#94630c" font-size="12" font-weight="700" letter-spacing="1.2">PLANNED · NOT AVAILABLE TODAY</text>
+    <rect x="470" y="620" width="330" height="66" rx="9" fill="#fff" stroke="#d8b15c" stroke-dasharray="5 4"/>
+    <text x="493" y="648" fill="#102039" font-size="15" font-weight="700">LDAP identity validation</text>
+    <text x="493" y="670" fill="#58677d" font-size="12">Directory context for account review</text>
+    <rect x="836" y="620" width="500" height="66" rx="9" fill="#fff" stroke="#d8b15c" stroke-dasharray="5 4"/>
+    <text x="859" y="648" fill="#102039" font-size="15" font-weight="700">LLM-assisted user-risk profile</text>
+    <text x="859" y="670" fill="#58677d" font-size="12">Server-side analysis · inputs and safeguards to be designed</text>
+    <path d="M1210 445v111h-210v56" fill="none" stroke="#c18a2e" stroke-width="1.7" stroke-dasharray="6 6" marker-end="url(#futureArrow)"/>
+    <text x="1016" y="547" fill="#94630c" font-size="10">future analysis path</text>
+  </g>
+</svg>
